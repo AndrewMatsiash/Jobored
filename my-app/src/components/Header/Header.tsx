@@ -1,31 +1,28 @@
 import { useState } from 'react';
 import {
   createStyles,
-  Header as HeaderWrapper,
   Container,
   Group,
   Burger,
   Paper,
   Transition,
   rem,
-  Box,
   Flex,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Link } from 'react-router-dom';
 import Logo from '../Logo';
 
-const HEADER_HEIGHT = rem(60);
-
 const useStyles = createStyles(theme => ({
   header: {
     position: 'relative',
     zIndex: 1,
+    height: '64px',
   },
 
   dropdown: {
     position: 'absolute',
-    top: HEADER_HEIGHT,
+    top: 50,
     left: 0,
     right: 0,
     zIndex: 0,
@@ -126,7 +123,7 @@ export default function Header({ links }: HeaderProps) {
   ));
 
   return (
-    <HeaderWrapper height={HEADER_HEIGHT} mb={120} className={classes.header}>
+    <header className={classes.header}>
       <Container className={classes.header_container}>
         <Flex className={classes.logo_container}>
           <Logo />
@@ -148,6 +145,6 @@ export default function Header({ links }: HeaderProps) {
           )}
         </Transition>
       </Container>
-    </HeaderWrapper>
+    </header>
   );
 }
