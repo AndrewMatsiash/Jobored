@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {
   createStyles,
-  Header,
+  Header as HeaderWrapper,
   Container,
   Group,
   Burger,
@@ -13,6 +13,7 @@ import {
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Link } from 'react-router-dom';
+import Logo from '../Logo';
 
 const HEADER_HEIGHT = rem(60);
 
@@ -64,7 +65,7 @@ const useStyles = createStyles(theme => ({
 
   link: {
     display: 'block',
-    lineHeight: 1,
+    lineHeight: '20px',
     padding: `${rem(8)} ${rem(12)}`,
     borderRadius: theme.radius.sm,
     textDecoration: 'none',
@@ -72,7 +73,6 @@ const useStyles = createStyles(theme => ({
       theme.colorScheme === 'dark'
         ? theme.colors.dark[0]
         : theme.colors.gray[7],
-    fontSize: theme.fontSizes.sm,
     fontWeight: 500,
 
     '&:hover': {
@@ -90,7 +90,7 @@ const useStyles = createStyles(theme => ({
 
   linkActive: {
     '&, &:hover': {
-      backgroundColor: theme.fn.variant({
+      Color: theme.fn.variant({
         variant: 'light',
         color: theme.primaryColor,
       }).background,
@@ -100,11 +100,11 @@ const useStyles = createStyles(theme => ({
   },
 }));
 
-interface HeaderResponsiveProps {
+interface HeaderProps {
   links: { link: string; label: string }[];
 }
 
-export function HeaderResponsive({ links }: HeaderResponsiveProps) {
+export default function Header({ links }: HeaderProps) {
   const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
@@ -126,9 +126,11 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
   ));
 
   return (
-    <Header height={HEADER_HEIGHT} mb={120} className={classes.header}>
+    <HeaderWrapper height={HEADER_HEIGHT} mb={120} className={classes.header}>
       <Container className={classes.header_container}>
-        <Flex className={classes.logo_container}>Logo</Flex>
+        <Flex className={classes.logo_container}>
+          <Logo />
+        </Flex>
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
@@ -146,6 +148,6 @@ export function HeaderResponsive({ links }: HeaderResponsiveProps) {
           )}
         </Transition>
       </Container>
-    </Header>
+    </HeaderWrapper>
   );
 }
