@@ -1,25 +1,36 @@
-import { Group } from '@mantine/core';
+import {
+  Box,
+  Container,
+  Flex,
+  Group,
+  Stack,
+  Text,
+  createStyles,
+} from '@mantine/core';
 import FiltersForm from './ components/FiltersForm';
+import JobCard from './ components/JobCard';
+import SearchBar from './ components/SearchBar';
 
-import { Input, Button } from '@mantine/core';
+const useStyles = createStyles(theme => ({
+  filtersFormContainer: {
+    flexBasis: '315px',
+  },
+  container: {
+    flexGrow: 1,
+  },
+}));
 
-function SearchBar(props) {
-  return (
-    <Group>
-      <Input placeholder="Поиск" />
-      <Button>Найти</Button>
-    </Group>
-  );
-}
 export const SearchPage = () => {
+  const { classes } = useStyles();
   return (
-    <Group>
-      <div>
+    <Flex>
+      <div className={classes.filtersFormContainer}>
         <FiltersForm />
       </div>
-      <div>
+      <div className={classes.container}>
         <SearchBar />
+        <JobCard />
       </div>
-    </Group>
+    </Flex>
   );
 };

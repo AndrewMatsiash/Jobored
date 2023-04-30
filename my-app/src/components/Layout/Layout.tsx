@@ -8,14 +8,12 @@ const useStyles = createStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     maxWidth: '1116px',
+    margin: '0 auto',
     minHeight: '100vh',
   },
   main: {
-    flex: '1 0 auto',
-    marginBottom: '40px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    puddingTop: '40px',
+    width: '100%',
   },
 }));
 

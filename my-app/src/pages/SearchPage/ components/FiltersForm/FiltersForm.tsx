@@ -1,43 +1,60 @@
-import { Card, Title, Stack, TextInput, Button } from '@mantine/core';
-import React from 'react';
+import {
+  Card,
+  Title,
+  Stack,
+  Button,
+  CloseButton,
+  Group,
+  Select,
+} from '@mantine/core';
+import { IconChevronDown } from '@tabler/icons-react';
 import './FiltersForm.css';
 
 export default function FiltersForm() {
-  const [industry, setIndustry] = React.useState('');
-  const [salaryFrom, setSalaryFrom] = React.useState('');
-  const [salaryTo, setSalaryTo] = React.useState('');
-
   const handleSubmit = event => {
     event.preventDefault();
     // Обработка данных формы
   };
 
   return (
-    <Card>
-      <Title order={3}>Фильтры</Title>
+    <Card p="lg">
+      <Group>
+        <Title order={3}>Фильтры</Title>
+        <Button
+          color="gray"
+          rightIcon={<CloseButton aria-label="reset form" />}
+          variant="white"
+        >
+          Сбросить все
+        </Button>
+      </Group>
+
       <form onSubmit={handleSubmit}>
         <Stack spacing="sm">
           <Title order={4}>Отрасль</Title>
-          <TextInput
-            placeholder="Введите название отрасли"
-            value={industry}
-            onChange={event => setIndustry(event.target.value)}
+          <Select
+            rightSection={<IconChevronDown color="#ACADB9" />}
+            placeholder="Выберете отрасль"
+            searchable
+            data={['React', 'Angular', 'Svelte', 'Vue']}
           />
+
           <Title order={4}>Оклад</Title>
-          <TextInput
-            type="number"
-            placeholder="от"
-            value={salaryFrom}
-            onChange={event => setSalaryFrom(event.target.value)}
-          />
-          <TextInput
-            type="number"
+
+          <Select placeholder="от" searchable data={['1', '2', '3', '3']} />
+
+          <Select
             placeholder="до"
-            value={salaryTo}
-            onChange={event => setSalaryTo(event.target.value)}
+            searchable
+            nothingFound="No options"
+            data={['10', '20', '30', '40']}
           />
         </Stack>
-        <Button type="submit" variant="outline" style={{ marginTop: '1rem' }}>
+        <Button
+          type="submit"
+          variant="outline"
+          style={{ marginTop: '1rem', width: '100%' }}
+        >
           Применить
         </Button>
       </form>
