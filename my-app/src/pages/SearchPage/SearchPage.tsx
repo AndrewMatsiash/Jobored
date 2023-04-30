@@ -1,15 +1,10 @@
-import {
-  Box,
-  Container,
-  Flex,
-  Group,
-  Stack,
-  Text,
-  createStyles,
-} from '@mantine/core';
+import { Flex, Stack, createStyles } from '@mantine/core';
 import FiltersForm from './ components/FiltersForm';
 import JobCard from './ components/JobCard';
 import SearchBar from './ components/SearchBar';
+import { getVacancies } from '../../services/getVacancies';
+import React from 'react';
+import { IVacancy } from '../../types/vacancy';
 
 const useStyles = createStyles(theme => ({
   filtersFormContainer: {
@@ -22,6 +17,18 @@ const useStyles = createStyles(theme => ({
 
 export const SearchPage = () => {
   const { classes } = useStyles();
+  const [vacancies, setVacancies] = React.useState<IVacancy[]>([]);
+
+  React.useEffect(() => {
+    const getData = async () => {
+      const data = await getVacancies();
+      if (data) {
+        setVacancies(data);
+      }
+    };
+    getData();
+  }, []);
+
   return (
     <Flex>
       <div className={classes.filtersFormContainer}>
@@ -29,7 +36,9 @@ export const SearchPage = () => {
       </div>
       <Stack spacing={'md'} className={classes.container}>
         <SearchBar />
-        <JobCard />
+        {vacancies.map(vacancy => {
+          return <JobCard vacancy={vacancy} />;
+        })}
       </Stack>
     </Flex>
   );

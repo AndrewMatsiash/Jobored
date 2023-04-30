@@ -20,11 +20,7 @@ export default function FiltersForm() {
     <Card p="lg">
       <Group>
         <Title order={3}>Фильтры</Title>
-        <Button
-          color="gray"
-          rightIcon={<CloseButton aria-label="reset form" />}
-          variant="white"
-        >
+        <Button color="gray" variant="white">
           Сбросить все
         </Button>
       </Group>

@@ -2,27 +2,26 @@ import { Card, Flex, Stack, Text } from '@mantine/core';
 import './JobCard.css';
 import { Link } from 'react-router-dom';
 import { IconMapPin } from '@tabler/icons-react';
+import { IVacancy } from '../../../../types/vacancy';
 
-export default function JobCard(props) {
-  const { title, salary, location } = props;
-
+export default function JobCard({ vacancy }: { vacancy: IVacancy }) {
   return (
     <Card shadow="sm" padding={'xl'}>
       <Stack spacing={'sm'}>
         <Text size="xl" weight={600}>
-          <Link to="#">Менеджер-дизайнер</Link>
+          <Link to="#">{vacancy.profession}</Link>
         </Text>
         <Flex gap="lg">
           <Text weight={500} c={'myColor.2'}>
-            з/п от 70000 rub
+            з/п от {vacancy.payment_to} rub
           </Text>
           <Text display={'list-item'} lts={'disc'}>
-            Полный рабочий день
+            {vacancy.type_of_work.title}
           </Text>
         </Flex>
         <Flex align="center">
           <IconMapPin size={'13px'} />
-          <Text ml={'xs'}>Новый Уренгой</Text>
+          <Text ml={'xs'}>{vacancy.town.title}</Text>
         </Flex>
       </Stack>
     </Card>
