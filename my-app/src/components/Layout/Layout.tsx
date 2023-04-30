@@ -24,7 +24,7 @@ export default function Layout() {
     <div className={classes.container}>
       <Header
         links={[
-          { label: 'Поиск вакансий', link: '/searchPage' },
+          { label: 'Поиск вакансий', link: '/' },
           { label: 'Избранное', link: '/favorites' },
         ]}
       />
