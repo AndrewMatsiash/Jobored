@@ -33,7 +33,8 @@ export default function FiltersForm() {
         <Stack spacing="sm">
           <Title order={4}>Отрасль</Title>
           <Select
-            rightSection={<IconChevronDown color="#ACADB9" />}
+            c="gray.5"
+            rightSection={<IconChevronDown />}
             placeholder="Выберете отрасль"
             searchable
             data={['React', 'Angular', 'Svelte', 'Vue']}

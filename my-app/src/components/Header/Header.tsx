@@ -17,7 +17,6 @@ const useStyles = createStyles(theme => ({
   header: {
     position: 'relative',
     zIndex: 1,
-    height: '64px',
   },
 
   dropdown: {
@@ -124,7 +123,7 @@ export default function Header({ links }: HeaderProps) {
 
   return (
     <header className={classes.header}>
-      <Container className={classes.header_container}>
+      <Container p="xl" className={classes.header_container}>
         <Flex className={classes.logo_container}>
           <Logo />
         </Flex>
