@@ -14,6 +14,7 @@ const useStyles = createStyles(theme => ({
   main: {
     puddingTop: '40px',
     width: '100%',
+    padding: '40px',
   },
 }));
 

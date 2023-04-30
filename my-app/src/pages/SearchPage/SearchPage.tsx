@@ -27,10 +27,10 @@ export const SearchPage = () => {
       <div className={classes.filtersFormContainer}>
         <FiltersForm />
       </div>
-      <div className={classes.container}>
+      <Stack spacing={'md'} className={classes.container}>
         <SearchBar />
         <JobCard />
-      </div>
+      </Stack>
     </Flex>
   );
 };

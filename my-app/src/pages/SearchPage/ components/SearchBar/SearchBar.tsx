@@ -15,10 +15,13 @@ export default function SearchBar() {
   const { classes } = useStyles();
   return (
     <Input
-      style={{ paddingRight: '20px' }}
       // icon={<IconBrandTwitte size="1rem" />}
       placeholder="Your twitter"
-      rightSection={<Button style={{ marginRight: '10px' }}>найти</Button>}
+      rightSection={
+        <Button right={'20px'} size="xs">
+          найти
+        </Button>
+      }
     />
   );
 }
