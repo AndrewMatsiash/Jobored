@@ -1,21 +1,32 @@
 import React from 'react';
 import './SearchBar.css';
-import { Input, Button, createStyles, Flex } from '@mantine/core';
+import { Input, Button } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
 import { getVacancies } from '../../../../services/getVacancies';
+import { IVacancy } from '../../../../types/vacancy';
 
-export default function SearchBar({ onSearch, setIsLoading }) {
+interface SearchBarProps {
+  onSearch: (data: IVacancy[]) => void;
+  setIsLoading: (boolean: boolean) => void;
+}
+
+export const SearchBar: React.FC<SearchBarProps> = ({
+  onSearch,
+  setIsLoading,
+}) => {
   const [searchText, setSearchText] = React.useState('');
 
-  const handleChange = e => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
   };
 
   const handleSearch = async () => {
     setIsLoading(true);
     const data = await getVacancies(searchText);
-    onSearch(data);
-    setIsLoading(false);
+    if (data) {
+      onSearch(data);
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -30,4 +41,4 @@ export default function SearchBar({ onSearch, setIsLoading }) {
       }
     />
   );
-}
+};

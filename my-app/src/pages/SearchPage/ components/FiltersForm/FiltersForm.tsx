@@ -1,16 +1,8 @@
-import {
-  Card,
-  Title,
-  Stack,
-  Button,
-  CloseButton,
-  Group,
-  Select,
-} from '@mantine/core';
+import { Card, Title, Stack, Button, Group, Select } from '@mantine/core';
 import { IconChevronDown } from '@tabler/icons-react';
 import './FiltersForm.css';
 
-export default function FiltersForm() {
+export const FiltersForm = () => {
   const handleSubmit = event => {
     event.preventDefault();
     // Обработка данных формы
@@ -57,4 +49,4 @@ export default function FiltersForm() {
       </form>
     </Card>
   );
-}
+};

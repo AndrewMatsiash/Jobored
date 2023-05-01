@@ -1,10 +1,10 @@
-import { Card, Flex, Stack, Text } from '@mantine/core';
 import './JobCard.css';
+import { Card, Flex, Stack, Text } from '@mantine/core';
 import { Link } from 'react-router-dom';
 import { IconMapPin } from '@tabler/icons-react';
 import { IVacancy } from '../../../../types/vacancy';
 
-export default function JobCard({ vacancy }: { vacancy: IVacancy }) {
+export const JobCard = ({ vacancy }: { vacancy: IVacancy }) => {
   return (
     <Card shadow="sm" padding={'xl'}>
       <Stack spacing={'sm'}>
@@ -26,4 +26,4 @@ export default function JobCard({ vacancy }: { vacancy: IVacancy }) {
       </Stack>
     </Card>
   );
-}
+};

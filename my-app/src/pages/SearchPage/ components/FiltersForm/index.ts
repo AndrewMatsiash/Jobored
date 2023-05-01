@@ -1,2 +1,2 @@
-import FiltersForm from './FiltersForm';
+import { FiltersForm } from './FiltersForm';
 export default FiltersForm;
