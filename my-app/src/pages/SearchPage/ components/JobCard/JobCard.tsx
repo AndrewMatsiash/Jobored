@@ -13,7 +13,7 @@ export default function JobCard({ vacancy }: { vacancy: IVacancy }) {
         </Text>
         <Flex gap="lg">
           <Text weight={500} c={'myColor.2'}>
-            з/п от {vacancy.payment_to} rub
+            з/п от {vacancy.payment_from} rub
           </Text>
           <Text display={'list-item'} lts={'disc'}>
             {vacancy.type_of_work.title}

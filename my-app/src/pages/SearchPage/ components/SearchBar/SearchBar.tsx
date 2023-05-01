@@ -1,25 +1,30 @@
 import React from 'react';
 import './SearchBar.css';
-import { Group, Input, Button, createStyles, Flex } from '@mantine/core';
+import { Input, Button, createStyles, Flex } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
+import { getVacancies } from '../../../../services/getVacancies';
 
-const useStyles = createStyles(theme => ({
-  searchBar: {
-    width: '100%',
-  },
-  searchBarInput: {
-    flexGrow: 1,
-  },
-}));
+export default function SearchBar({ onSearch, setIsLoading }) {
+  const [searchText, setSearchText] = React.useState('');
 
-export default function SearchBar() {
-  const { classes } = useStyles();
+  const handleChange = e => {
+    setSearchText(e.target.value);
+  };
+
+  const handleSearch = async () => {
+    setIsLoading(true);
+    const data = await getVacancies(searchText);
+    onSearch(data);
+    setIsLoading(false);
+  };
+
   return (
     <Input
+      onChange={handleChange}
       icon={<IconSearch size="1rem" />}
       placeholder="Введите название вакансии"
       rightSection={
-        <Button right={'20px'} size="xs">
+        <Button onClick={handleSearch} right={'20px'} size="xs">
           найти
         </Button>
       }
