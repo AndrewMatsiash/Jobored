@@ -7,7 +7,7 @@ import { IDataSearch } from '../../SearchPage';
 import { useCategories } from '../../../../hooks/useCatecories';
 
 interface IDataSelectIndustry {
-  value: number;
+  value: string;
   label: string;
 }
 
@@ -18,9 +18,32 @@ interface IFiltersFormProps {
 export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
   const { categories } = useCategories();
 
-  const dataSelect = categories.reduce<IDataSelectIndustry[]>((acc, c) => {
-    return [...acc, { value: c.key, label: c.title_rus }];
+  const optionsSelect = categories.reduce<IDataSelectIndustry[]>((acc, c) => {
+    return [...acc, { value: c.key.toString(), label: c.title_rus }];
   }, []);
+
+  const salaryRangesMin = [
+    '0',
+    '30000',
+    '50000',
+    '80000',
+    '120000',
+    '160000',
+    '200000',
+    '300000',
+    '500000',
+  ];
+  const salaryRangesMax = [
+    '30000',
+    '50000',
+    '80000',
+    '120000',
+    '160000',
+    '200000',
+    '300000',
+    '500000',
+    '∞',
+  ];
 
   const form = useForm({
     initialValues: {
@@ -57,7 +80,7 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
             rightSection={<IconChevronDown />}
             placeholder="Выберете отрасль"
             searchable
-            data={dataSelect}
+            data={optionsSelect}
             {...form.getInputProps('industry')}
           />
 
@@ -66,34 +89,14 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
           <Select
             placeholder="от"
             searchable
-            data={[
-              '0',
-              '30000',
-              '50000',
-              '80000',
-              '120000',
-              '160000',
-              '200000',
-              '300000',
-              '500000',
-            ]}
+            data={salaryRangesMin}
             {...form.getInputProps('paymentFrom')}
           />
 
           <Select
             placeholder="до"
             searchable
-            data={[
-              '30000',
-              '50000',
-              '80000',
-              '120000',
-              '160000',
-              '200000',
-              '300000',
-              '500000',
-              '∞',
-            ]}
+            data={salaryRangesMax}
             {...form.getInputProps('paymentTo')}
           />
         </Stack>

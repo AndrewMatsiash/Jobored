@@ -2,11 +2,6 @@ import React from 'react';
 import { getIndustryCatalog } from '../services/getIndustryCatalog';
 import { ICategory } from '../types/category';
 
-interface IDataSelectIndustry {
-  key: number;
-  title_rus: string;
-}
-
 export const useCategories = () => {
   const [categories, setCategories] = React.useState<ICategory[]>([]);
   const [isLoading, setIsLoading] = React.useState(false);
