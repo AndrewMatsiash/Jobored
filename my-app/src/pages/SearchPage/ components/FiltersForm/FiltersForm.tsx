@@ -1,9 +1,8 @@
 import React from 'react';
-import { Card, Title, Stack, Button, Group, Select } from '@mantine/core';
-import { IconChevronDown } from '@tabler/icons-react';
+import { Card, Title, Stack, Button, Group, Select, Flex } from '@mantine/core';
+import { IconChevronDown, IconX } from '@tabler/icons-react';
 import './FiltersForm.css';
 import { useForm } from '@mantine/form';
-import { IDataSearch } from '../../SearchPage';
 import { useCategories } from '../../../../hooks/useCatecories';
 
 interface IDataSelectIndustry {
@@ -11,8 +10,14 @@ interface IDataSelectIndustry {
   label: string;
 }
 
+export interface IDataFilterForm {
+  industry: string;
+  paymentFrom: string;
+  paymentTo: string;
+}
+
 interface IFiltersFormProps {
-  onSearch: (data: IDataSearch) => void;
+  onSearch: (data: IDataFilterForm) => void;
 }
 
 export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
@@ -42,7 +47,6 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
     '200000',
     '300000',
     '500000',
-    '∞',
   ];
 
   const form = useForm({
@@ -53,13 +57,13 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
     },
   });
 
-  const handleSubmit = (event: IDataSearch) => {
+  const handleSubmit = (event: IDataFilterForm) => {
     onSearch(event);
   };
 
   return (
     <Card p="lg">
-      <Group>
+      <Flex align="center" justify="space-between">
         <Title order={3}>Фильтры</Title>
         <Button
           onClick={() => {
@@ -69,8 +73,9 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
           variant="white"
         >
           Сбросить все
+          <IconX width={'16px'} height={'16px'} />
         </Button>
-      </Group>
+      </Flex>
 
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <Stack spacing="sm">

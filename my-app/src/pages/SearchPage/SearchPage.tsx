@@ -5,6 +5,7 @@ import JobCard from './ components/JobCard';
 import SearchBar from './ components/SearchBar';
 import { getVacancies } from '../../services/getVacancies';
 import { IVacancy } from '../../types/vacancy';
+import { IDataFilterForm } from './ components/FiltersForm/FiltersForm';
 
 const useStyles = createStyles(theme => ({
   filtersFormContainer: {
@@ -14,14 +15,6 @@ const useStyles = createStyles(theme => ({
     flexGrow: 1,
   },
 }));
-
-export interface IDataSearch {
-  page: number;
-  text?: string;
-  industry: string;
-  paymentFrom: string;
-  paymentTo: string;
-}
 
 export const SearchPage = () => {
   const { classes } = useStyles();
@@ -35,6 +28,8 @@ export const SearchPage = () => {
     paymentTo: '',
   });
 
+  const { page, textInput, industry, paymentFrom, paymentTo } = dataSearch;
+
   const handlePagination = (page: number) => {
     setDataSearch({ ...dataSearch, page: page });
   };
@@ -43,11 +38,9 @@ export const SearchPage = () => {
     setDataSearch({ ...dataSearch, textInput: text });
   };
 
-  const handleSearchForm = (data: IDataSearch) => {
-    setDataSearch({ textInput: dataSearch.textInput, ...data });
+  const handleSearchForm = (data: IDataFilterForm) => {
+    setDataSearch({ ...dataSearch, textInput: textInput, ...data });
   };
-
-  const { page, textInput, industry, paymentFrom, paymentTo } = dataSearch;
 
   React.useEffect(() => {
     const getData = async () => {
