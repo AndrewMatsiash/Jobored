@@ -2,15 +2,20 @@ import { API_KEY, API_TOKEN, BASE_URL } from '../constants/superjobApi';
 import { IVacancy } from '../types/vacancy';
 
 export const getVacancies = async (
+  page = 0,
   text = '',
   industry?: string,
   salaryFrom?: string,
   salaryTo?: string
 ): Promise<IVacancy[] | undefined> => {
   try {
-    let url = `${BASE_URL}2.0/vacancies/?count=6&keyword=${encodeURIComponent(
+    let url = `${BASE_URL}2.0/vacancies/?page=${page}&count=4&keyword=${encodeURIComponent(
       text
     )}&published=1&no_agreement=1`;
+
+    if (text) {
+      url += `&catalogues=${industry}`;
+    }
 
     if (industry) {
       url += `&catalogues=${industry}`;

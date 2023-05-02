@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Stack, createStyles } from '@mantine/core';
+import { Flex, Pagination, Stack, createStyles } from '@mantine/core';
 import FiltersForm from './ components/FiltersForm';
 import JobCard from './ components/JobCard';
 import SearchBar from './ components/SearchBar';
@@ -16,6 +16,7 @@ const useStyles = createStyles(theme => ({
 }));
 
 export interface IDataSearch {
+  page: number;
   text?: string;
   industry: string;
   paymentFrom: string;
@@ -27,11 +28,16 @@ export const SearchPage = () => {
   const [vacancies, setVacancies] = React.useState<IVacancy[]>([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [dataSearch, setDataSearch] = React.useState({
+    page: 0,
     textInput: '',
     industry: '',
     paymentFrom: '',
     paymentTo: '',
   });
+
+  const handlePagination = (page: number) => {
+    setDataSearch({ ...dataSearch, page: page });
+  };
 
   const handleSearchInput = (text: string) => {
     setDataSearch({ ...dataSearch, textInput: text });
@@ -41,12 +47,13 @@ export const SearchPage = () => {
     setDataSearch({ textInput: dataSearch.textInput, ...data });
   };
 
-  const { textInput, industry, paymentFrom, paymentTo } = dataSearch;
+  const { page, textInput, industry, paymentFrom, paymentTo } = dataSearch;
 
   React.useEffect(() => {
     const getData = async () => {
       setIsLoading(true);
       const data = await getVacancies(
+        page,
         textInput,
         industry,
         paymentFrom,
@@ -54,7 +61,6 @@ export const SearchPage = () => {
       );
       if (data) {
         console.log(data);
-
         setVacancies(data);
         setIsLoading(false);
       }
@@ -76,6 +82,7 @@ export const SearchPage = () => {
             <JobCard key={vacancy.id} vacancy={vacancy} />
           ))
         )}
+        <Pagination value={page} onChange={handlePagination} total={125} />
       </Stack>
     </Flex>
   );
