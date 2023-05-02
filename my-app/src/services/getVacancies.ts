@@ -2,7 +2,7 @@ import { API_KEY, API_TOKEN, BASE_URL } from '../constants/superjobApi';
 import { IVacancy } from '../types/vacancy';
 
 export const getVacancies = async (
-  page = 0,
+  page: number,
   text = '',
   industry?: string,
   salaryFrom?: string,

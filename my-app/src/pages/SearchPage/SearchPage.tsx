@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Pagination, Stack, createStyles } from '@mantine/core';
+import { Flex, Group, Pagination, Stack, createStyles } from '@mantine/core';
 import FiltersForm from './ components/FiltersForm';
 import JobCard from './ components/JobCard';
 import SearchBar from './ components/SearchBar';
@@ -28,7 +28,7 @@ export const SearchPage = () => {
   const [vacancies, setVacancies] = React.useState<IVacancy[]>([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [dataSearch, setDataSearch] = React.useState({
-    page: 0,
+    page: 1,
     textInput: '',
     industry: '',
     paymentFrom: '',
@@ -53,7 +53,7 @@ export const SearchPage = () => {
     const getData = async () => {
       setIsLoading(true);
       const data = await getVacancies(
-        page,
+        page - 1,
         textInput,
         industry,
         paymentFrom,
@@ -76,13 +76,17 @@ export const SearchPage = () => {
       <Stack spacing={'md'} className={classes.container}>
         <SearchBar onSearch={handleSearchInput} />
         {isLoading ? (
-          <div>...Loading...</div>
+          <Stack justify="center" align="center" style={{ flexGrow: '1' }}>
+            <div>...Loading...</div>
+          </Stack>
         ) : (
           vacancies.map(vacancy => (
             <JobCard key={vacancy.id} vacancy={vacancy} />
           ))
         )}
-        <Pagination value={page} onChange={handlePagination} total={125} />
+        <Flex justify="center">
+          <Pagination value={page} onChange={handlePagination} total={125} />
+        </Flex>
       </Stack>
     </Flex>
   );
