@@ -8,7 +8,7 @@ export const JobCard = ({ vacancy }: { vacancy: IVacancy }) => {
   return (
     <Card shadow="sm" padding={'xl'}>
       <Stack spacing={'sm'}>
-        <Text size="xl" weight={600}>
+        <Text size='xl' weight={600}>
           <Link to="#">{vacancy.profession}</Link>
         </Text>
         <Flex gap="lg">

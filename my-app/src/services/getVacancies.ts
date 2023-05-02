@@ -10,7 +10,7 @@ export const getVacancies = async (
   try {
     let url = `${BASE_URL}2.0/vacancies/?count=6&keyword=${encodeURIComponent(
       text
-    )}&published=1`;
+    )}&published=1&no_agreement=1`;
 
     if (industry) {
       url += `&catalogues=${industry}`;

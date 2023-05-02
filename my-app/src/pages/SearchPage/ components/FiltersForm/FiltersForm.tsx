@@ -1,14 +1,27 @@
+import React from 'react';
 import { Card, Title, Stack, Button, Group, Select } from '@mantine/core';
 import { IconChevronDown } from '@tabler/icons-react';
 import './FiltersForm.css';
 import { useForm } from '@mantine/form';
 import { IDataSearch } from '../../SearchPage';
+import { useCategories } from '../../../../hooks/useCatecories';
+
+interface IDataSelectIndustry {
+  value: number;
+  label: string;
+}
 
 interface IFiltersFormProps {
   onSearch: (data: IDataSearch) => void;
 }
 
 export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
+  const { categories } = useCategories();
+
+  const dataSelect = categories.reduce<IDataSelectIndustry[]>((acc, c) => {
+    return [...acc, { value: c.key, label: c.title_rus }];
+  }, []);
+
   const form = useForm({
     initialValues: {
       industry: '',
@@ -44,7 +57,7 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
             rightSection={<IconChevronDown />}
             placeholder="Выберете отрасль"
             searchable
-            data={['React', 'Angular', 'Svelte', 'Vue']}
+            data={dataSelect}
             {...form.getInputProps('industry')}
           />
 
@@ -53,14 +66,34 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
           <Select
             placeholder="от"
             searchable
-            data={['1', '2', '4', '3']}
+            data={[
+              '0',
+              '30000',
+              '50000',
+              '80000',
+              '120000',
+              '160000',
+              '200000',
+              '300000',
+              '500000',
+            ]}
             {...form.getInputProps('paymentFrom')}
           />
 
           <Select
             placeholder="до"
             searchable
-            data={['10', '20', '30', '40']}
+            data={[
+              '30000',
+              '50000',
+              '80000',
+              '120000',
+              '160000',
+              '200000',
+              '300000',
+              '500000',
+              '∞',
+            ]}
             {...form.getInputProps('paymentTo')}
           />
         </Stack>

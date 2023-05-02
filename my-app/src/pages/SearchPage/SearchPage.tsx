@@ -26,36 +26,41 @@ export const SearchPage = () => {
   const { classes } = useStyles();
   const [vacancies, setVacancies] = React.useState<IVacancy[]>([]);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [dataFormFilter, setDataFormFilter] = React.useState({
-    text: '',
+  const [dataSearch, setDataSearch] = React.useState({
+    textInput: '',
     industry: '',
     paymentFrom: '',
     paymentTo: '',
   });
 
-
-
   const handleSearchInput = (text: string) => {
-    setDataFormFilter({ ...dataFormFilter, text: text });
+    setDataSearch({ ...dataSearch, textInput: text });
   };
 
   const handleSearchForm = (data: IDataSearch) => {
-    setDataFormFilter({ text: dataFormFilter.text, ...data });
+    setDataSearch({ textInput: dataSearch.textInput, ...data });
   };
 
-  const { text, industry, paymentFrom, paymentTo } = dataFormFilter;
+  const { textInput, industry, paymentFrom, paymentTo } = dataSearch;
 
   React.useEffect(() => {
     const getData = async () => {
       setIsLoading(true);
-      const data = await getVacancies(text, industry, paymentFrom, paymentTo);
+      const data = await getVacancies(
+        textInput,
+        industry,
+        paymentFrom,
+        paymentTo
+      );
       if (data) {
+        console.log(data);
+
         setVacancies(data);
         setIsLoading(false);
       }
     };
     getData();
-  }, [dataFormFilter]);
+  }, [dataSearch]);
 
   return (
     <Flex>
