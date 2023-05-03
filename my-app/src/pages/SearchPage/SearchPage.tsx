@@ -28,8 +28,6 @@ export const SearchPage = () => {
     paymentTo: '',
   });
 
-  const { page, textInput, industry, paymentFrom, paymentTo } = dataSearch;
-
   const handlePagination = (page: number) => {
     setDataSearch({ ...dataSearch, page: page });
   };
@@ -39,10 +37,12 @@ export const SearchPage = () => {
   };
 
   const handleSearchForm = (data: IDataFilterForm) => {
-    setDataSearch({ ...dataSearch, textInput: textInput, ...data });
+    setDataSearch({ ...dataSearch, textInput: dataSearch.textInput, ...data });
   };
 
   React.useEffect(() => {
+    const { page, textInput, industry, paymentFrom, paymentTo } = dataSearch;
+
     const getData = async () => {
       setIsLoading(true);
       const data = await getVacancies(
@@ -78,7 +78,11 @@ export const SearchPage = () => {
           ))
         )}
         <Flex justify="center">
-          <Pagination value={page} onChange={handlePagination} total={125} />
+          <Pagination
+            value={dataSearch.page}
+            onChange={handlePagination}
+            total={125}
+          />
         </Flex>
       </Stack>
     </Flex>

@@ -5,11 +5,13 @@ import { IconMapPin } from '@tabler/icons-react';
 import { IVacancy } from '../../../../types/vacancy';
 
 export const JobCard = ({ vacancy }: { vacancy: IVacancy }) => {
+  console.log(vacancy);
+
   return (
     <Card shadow="sm" padding={'xl'}>
       <Stack spacing={'sm'}>
-        <Text size='xl' weight={600}>
-          <Link to="#">{vacancy.profession}</Link>
+        <Text size="xl" weight={600}>
+          <Link to={`/job/${vacancy.id}`}>{vacancy.profession}</Link>
         </Text>
         <Flex gap="lg">
           <Text weight={500} c={'myColor.2'}>

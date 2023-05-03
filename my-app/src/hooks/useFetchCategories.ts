@@ -2,7 +2,7 @@ import React from 'react';
 import { getIndustryCatalog } from '../services/getIndustryCatalog';
 import { ICategory } from '../types/category';
 
-export const useCategories = () => {
+export const useFetchDataCategories = () => {
   const [categories, setCategories] = React.useState<ICategory[]>([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState(null);

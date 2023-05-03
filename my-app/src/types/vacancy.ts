@@ -34,6 +34,7 @@ export interface IVacancy {
   firm_name: string;
   firm_activity: string;
   link: string;
+  vacancyRichText: string;
 }
 
 export interface Agency {

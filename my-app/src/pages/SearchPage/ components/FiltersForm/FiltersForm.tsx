@@ -3,7 +3,7 @@ import { Card, Title, Stack, Button, Group, Select, Flex } from '@mantine/core';
 import { IconChevronDown, IconX } from '@tabler/icons-react';
 import './FiltersForm.css';
 import { useForm } from '@mantine/form';
-import { useCategories } from '../../../../hooks/useCatecories';
+import { useFetchDataCategories } from '../../../../hooks/useFetchCategories';
 
 interface IDataSelectIndustry {
   value: string;
@@ -21,7 +21,7 @@ interface IFiltersFormProps {
 }
 
 export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
-  const { categories } = useCategories();
+  const { categories } = useFetchDataCategories();
 
   const optionsSelect = categories.reduce<IDataSelectIndustry[]>((acc, c) => {
     return [...acc, { value: c.key.toString(), label: c.title_rus }];
@@ -66,6 +66,13 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
       <Flex align="center" justify="space-between">
         <Title order={3}>Фильтры</Title>
         <Button
+          rightIcon={
+            <IconX
+              style={{ paddingTop: '3px' }}
+              width={'16px'}
+              height={'16px'}
+            />
+          }
           onClick={() => {
             form.reset();
           }}
@@ -73,7 +80,6 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
           variant="white"
         >
           Сбросить все
-          <IconX width={'16px'} height={'16px'} />
         </Button>
       </Flex>
 
@@ -81,6 +87,7 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
         <Stack spacing="sm">
           <Title order={4}>Отрасль</Title>
           <Select
+            size="xs"
             c="gray.5"
             rightSection={<IconChevronDown />}
             placeholder="Выберете отрасль"
@@ -92,6 +99,7 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
           <Title order={4}>Оклад</Title>
 
           <Select
+            size="xs"
             placeholder="от"
             searchable
             data={salaryRangesMin}
@@ -99,6 +107,7 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
           />
 
           <Select
+            size="xs"
             placeholder="до"
             searchable
             data={salaryRangesMax}
