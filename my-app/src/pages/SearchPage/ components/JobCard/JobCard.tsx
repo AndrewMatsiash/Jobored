@@ -1,35 +1,17 @@
 import './JobCard.css';
 import { Card, Flex, Stack, Text } from '@mantine/core';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { IconMapPin, IconStar } from '@tabler/icons-react';
 import { IVacancy } from '../../../../types/vacancy';
 import React from 'react';
+import { addVacancyToFavorites } from '../../../../utils/addVacancyToFavorites';
+import { removeVacancyFromFavorites } from '../../../../utils/removeVacancyFromFavorites';
 
 export const JobCard = ({ vacancy }: { vacancy: IVacancy }) => {
-  const [isSelect, setIsSelect] = React.useState(false);
-
-  const addVacancyToFavorites = (vacancy: IVacancy) => {
-    const data = localStorage.getItem('favorites');
-    if (!data) {
-      localStorage.setItem('favorites', JSON.stringify([vacancy]));
-    } else {
-      const favorites = JSON.parse(data);
-      localStorage.setItem(
-        'favorites',
-        JSON.stringify([...favorites, vacancy])
-      );
-    }
-  };
-
-  const removeVacancyFromFavorites = (vacancyId: number) => {
-    const data = localStorage.getItem('favorites');
-    if (data) {
-      const favorites = JSON.parse(data).filter(
-        (f: IVacancy) => f.id !== vacancyId
-      );
-      localStorage.setItem('favorites', JSON.stringify(favorites));
-    }
-  };
+  const location = useLocation();
+  const [isSelect, setIsSelect] = React.useState(
+    location.pathname === '/favorites' ? true : false
+  );
 
   const toggleSelect = () => {
     setIsSelect(prevIsSelect => !prevIsSelect);
