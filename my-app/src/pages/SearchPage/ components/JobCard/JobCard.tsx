@@ -46,7 +46,7 @@ export const JobCard: React.FC<JobCardInterface> = ({ vacancy, onChange }) => {
         </Text>
         <Flex gap="lg">
           <Text weight={500} c={'myColor.2'}>
-            з/п от {vacancy.payment_from} rub
+            з/п от {vacancy.payment_from} - {vacancy.payment_to} rub
           </Text>
           <Text display={'list-item'} lts={'disc'}>
             {vacancy.type_of_work.title}

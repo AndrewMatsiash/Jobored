@@ -6,7 +6,7 @@ import SearchBar from './ components/SearchBar';
 import { getVacancies } from '../../services/getVacancies';
 import { IVacancy } from '../../types/vacancy';
 import { IDataFilterForm } from './ components/FiltersForm/FiltersForm';
-import { getAccessToken } from '../../services/getAccessToken';
+import { calculateTotalPages } from '../../utils/calculateTotalPages';
 
 const useStyles = createStyles(theme => ({
   filtersFormContainer: {
@@ -20,6 +20,7 @@ const useStyles = createStyles(theme => ({
 export const SearchPage = () => {
   const { classes } = useStyles();
   const [vacancies, setVacancies] = React.useState<IVacancy[]>([]);
+  const [totalPages, setTotalPages] = React.useState(1);
   const [isLoading, setIsLoading] = React.useState(false);
   const [dataSearch, setDataSearch] = React.useState({
     page: 1,
@@ -54,8 +55,9 @@ export const SearchPage = () => {
         paymentTo
       );
       if (data) {
-        console.log(data);
-        setVacancies(data);
+        const totalPages = calculateTotalPages(data.total);
+        setTotalPages(totalPages);
+        setVacancies(data.objects);
         setIsLoading(false);
       }
     };
@@ -82,7 +84,7 @@ export const SearchPage = () => {
           <Pagination
             value={dataSearch.page}
             onChange={handlePagination}
-            total={125}
+            total={totalPages}
           />
         </Flex>
       </Stack>
