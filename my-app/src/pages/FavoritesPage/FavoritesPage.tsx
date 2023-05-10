@@ -5,12 +5,7 @@ import { IVacancy } from '../../types/vacancy';
 import { getPaginateArray } from '../../utils/getPaginateArray';
 
 export const FavoritesPage = () => {
-  const [favorites, setFavorites] = React.useState([]);
-  const [isFavorite, setIsFavorite] = React.useState(true);
-  const toggleFavorite = () => {
-    setIsFavorite(prevIsFavorite => !prevIsFavorite);
-  };
-
+  const [favorites, setFavorites] = React.useState<IVacancy[]>([]);
   const [pageActive, setPageActive] = React.useState(1);
   const totalElements = 4;
   const totalPages = Math.ceil(favorites.length / totalElements);
@@ -18,18 +13,19 @@ export const FavoritesPage = () => {
   React.useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     setFavorites(favorites);
-  }, [isFavorite]);
+  }, [favorites]);
 
   const paginateArray = getPaginateArray<IVacancy>(favorites, pageActive, 4);
+
+  const onChange = (data: IVacancy[]) => {
+    setFavorites(data);
+  };
 
   return (
     <div>
       <Stack spacing={'md'}>
         {paginateArray.map((vacancy: IVacancy) => (
-          <JobCard
-            key={vacancy.id}
-            vacancy={vacancy}
-          />
+          <JobCard key={vacancy.id} vacancy={vacancy} onChange={onChange} />
         ))}
         <Flex justify="center">
           <Pagination

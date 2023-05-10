@@ -6,6 +6,7 @@ import SearchBar from './ components/SearchBar';
 import { getVacancies } from '../../services/getVacancies';
 import { IVacancy } from '../../types/vacancy';
 import { IDataFilterForm } from './ components/FiltersForm/FiltersForm';
+import { getAccessToken } from '../../services/getAccessToken';
 
 const useStyles = createStyles(theme => ({
   filtersFormContainer: {

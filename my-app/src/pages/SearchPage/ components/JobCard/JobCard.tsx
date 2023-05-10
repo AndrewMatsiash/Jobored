@@ -7,22 +7,26 @@ import React from 'react';
 import { addVacancyToFavorites } from '../../../../utils/addVacancyToFavorites';
 import { removeVacancyFromFavorites } from '../../../../utils/removeVacancyFromFavorites';
 
-export const JobCard = ({ vacancy }: { vacancy: IVacancy }) => {
+interface JobCardInterface {
+  vacancy: IVacancy;
+  onChange?: (data: IVacancy[]) => void;
+}
+
+export const JobCard: React.FC<JobCardInterface> = ({ vacancy, onChange }) => {
   const location = useLocation();
   const [isSelect, setIsSelect] = React.useState(
     location.pathname === '/favorites' ? true : false
   );
 
-  const toggleSelect = () => {
-    setIsSelect(prevIsSelect => !prevIsSelect);
-  };
-
   const handlerClick = () => {
-    toggleSelect();
+    setIsSelect(prevIsSelect => !prevIsSelect);
     if (!isSelect) {
       addVacancyToFavorites(vacancy);
     } else {
-      removeVacancyFromFavorites(vacancy.id);
+      const favorites = removeVacancyFromFavorites(vacancy.id);
+      if (favorites && onChange) {
+        onChange(favorites);
+      }
     }
   };
 

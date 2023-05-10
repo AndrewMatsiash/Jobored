@@ -17,6 +17,7 @@ export const getAccessToken = async () => {
     .then(response => response.json())
     .then(data => {
       access_token = data.access_token;
+      console.log(data);
     })
     .catch(error => console.error('Error:', error));
 };
