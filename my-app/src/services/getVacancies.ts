@@ -1,10 +1,11 @@
 import {
-  API_TOKEN,
   BASE_URL,
   CLIENT_SECRET,
+  COUNT_ELEMENTS_PAGE,
   SECRET_KEY,
 } from '../constants/superjobApi';
 import { IVacancy } from '../types/vacancy';
+import { getAccessToken } from './getAccessToken';
 
 interface response {
   objects: IVacancy[];
@@ -21,7 +22,7 @@ export const getVacancies = async (
   salaryTo?: string
 ): Promise<response | undefined> => {
   try {
-    let url = `${BASE_URL}2.0/vacancies/?page=${page}&count=4&keyword=${encodeURIComponent(
+    let url = `${BASE_URL}2.0/vacancies/?page=${page}&count=${COUNT_ELEMENTS_PAGE}&keyword=${encodeURIComponent(
       text
     )}&published=1&no_agreement=1`;
 
@@ -40,10 +41,11 @@ export const getVacancies = async (
     if (salaryTo) {
       url += `&payment_to=${salaryTo}`;
     }
+    console.log(await getAccessToken());
 
     const res = await fetch(url, {
       headers: {
-        Authorization: `Bearer ${API_TOKEN}`,
+        Authorization: `Bearer ${await getAccessToken()}`,
         'x-secret-key': SECRET_KEY,
         'X-Api-App-Id': CLIENT_SECRET,
       },

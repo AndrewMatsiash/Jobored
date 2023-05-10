@@ -1,6 +1,7 @@
 export const SECRET_KEY = 'GEU4nvd3rej*jeh.eqp';
 export const BASE_URL = 'https://startup-summer-2023-proxy.onrender.com/';
 export const MAX_ELEMENTS_PER_PAGE = 500;
+export const COUNT_ELEMENTS_PAGE = 4;
 export const MAX_PAGES = 125;
 export const LOGIN = 'sergei.stralenia@gmail.com';
 export const PASSWORD = 'paralect123';

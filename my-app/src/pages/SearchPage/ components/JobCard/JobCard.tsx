@@ -1,11 +1,12 @@
 import './JobCard.css';
 import { Card, Flex, Stack, Text } from '@mantine/core';
 import { Link, useLocation } from 'react-router-dom';
-import { IconMapPin, IconStar } from '@tabler/icons-react';
+import { IconMapPin } from '@tabler/icons-react';
 import { IVacancy } from '../../../../types/vacancy';
 import React from 'react';
 import { addVacancyToFavorites } from '../../../../utils/addVacancyToFavorites';
 import { removeVacancyFromFavorites } from '../../../../utils/removeVacancyFromFavorites';
+import StarICon from '../../../../components/StarIcon';
 
 interface JobCardInterface {
   vacancy: IVacancy;
@@ -34,11 +35,10 @@ export const JobCard: React.FC<JobCardInterface> = ({ vacancy, onChange }) => {
     <Card shadow="sm" padding={'xl'}>
       <Stack spacing={'sm'}>
         <Flex justify={'end'}>
-          <IconStar
-            onClick={() => {
-              handlerClick();
-            }}
-            color={isSelect ? 'green' : 'black'}
+          <StarICon
+            onClick={handlerClick}
+            fill={isSelect ? '#5E96FC' : 'none'}
+            stroke={isSelect ? '#5E96FC' : '#ACADB9'}
           />
         </Flex>
         <Text size="xl" weight={600}>

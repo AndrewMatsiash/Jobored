@@ -1,5 +1,6 @@
 import {
   BASE_URL,
+  CLIENT_ID,
   CLIENT_SECRET,
   HR,
   LOGIN,
@@ -7,23 +8,29 @@ import {
   SECRET_KEY,
 } from '../constants/superjobApi';
 
-export let access_token = '';
-
 export const getAccessToken = async () => {
-  return fetch(
-    `${BASE_URL}2.0/oauth2/password/?login=${LOGIN}&password=${PASSWORD}}
-    &client_secret=${CLIENT_SECRET}8&hr=${HR}`,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-        'x-secret-key': SECRET_KEY,
-      },
-    }
-  )
-    .then(response => response.json())
-    .then(data => {
-      access_token = data.access_token;
-      console.log(data);
-    })
-    .catch(error => console.error('Error:', error));
+  const data = localStorage.getItem('access_token');
+
+  if (data) {
+    return data;
+  }
+
+  try {
+    const res = await fetch(
+      `${BASE_URL}2.0/oauth2/password/?login=${LOGIN}&password=${PASSWORD}
+    &client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&hr=${HR}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'x-secret-key': SECRET_KEY,
+        },
+      }
+    );
+    const data = await res.json();
+
+    localStorage.setItem('access_token', data.access_token);
+    return data.access_token;
+  } catch (error) {
+    console.log('Error', error);
+  }
 };
