@@ -1,5 +1,14 @@
 import React from 'react';
-import { Card, Title, Stack, Button, Group, Select, Flex } from '@mantine/core';
+import {
+  Card,
+  Title,
+  Stack,
+  Button,
+  Group,
+  Select,
+  Flex,
+  Center,
+} from '@mantine/core';
 import { IconChevronDown, IconX } from '@tabler/icons-react';
 import './FiltersForm.css';
 import { useForm } from '@mantine/form';
@@ -62,16 +71,16 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
   };
 
   return (
-    <Card p="lg">
-      <Flex align="center" justify="space-between">
-        <Title order={3}>Фильтры</Title>
+    <Card p="lg" style={{ overflow: 'visible' }}>
+      <Flex align="center" justify="space-between" mb={32}>
+        <Title fz={'xl'}>Фильтры</Title>
         <Button
+          fw={500}
+          fz={14}
           rightIcon={
-            <IconX
-              style={{ paddingTop: '3px' }}
-              width={'16px'}
-              height={'16px'}
-            />
+            <Center>
+              <IconX style={{ paddingTop: '3px' }} width={'10.32px'} />
+            </Center>
           }
           onClick={() => {
             form.reset();
@@ -84,22 +93,29 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
       </Flex>
 
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <Stack spacing="sm">
-          <Title order={4}>Отрасль</Title>
+        <Stack spacing="0">
+          <Title mb={8} order={5}>
+            Отрасль
+          </Title>
+
           <Select
-            size="xs"
+            mb={20}
             c="gray.5"
-            rightSection={<IconChevronDown />}
+            rightSectionProps={{ style: { paddingRight: 12 } }}
+            rightSection={<IconChevronDown size={14} />}
             placeholder="Выберете отрасль"
             searchable
             data={optionsSelect}
             {...form.getInputProps('industry')}
           />
 
-          <Title order={4}>Оклад</Title>
+          <Title mb={8} order={5}>
+            Оклад
+          </Title>
 
           <Select
-            size="xs"
+            rightSectionProps={{ style: { paddingRight: 12 } }}
+            mb={8}
             placeholder="от"
             searchable
             data={salaryRangesMin}
@@ -107,7 +123,9 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
           />
 
           <Select
-            size="xs"
+            mb={20}
+            rightSectionProps={{ style: { paddingRight: 12 } }}
+            dropdownPosition="bottom"
             placeholder="до"
             searchable
             data={salaryRangesMax}
@@ -116,7 +134,7 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
         </Stack>
         <Button
           type="submit"
-          variant="outline"
+          variant="filled"
           style={{ marginTop: '1rem', width: '100%' }}
         >
           Применить

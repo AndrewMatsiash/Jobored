@@ -62,6 +62,7 @@ const useStyles = createStyles(theme => ({
   link: {
     display: 'block',
     lineHeight: '20px',
+    fontWeight: 400,
     padding: `${rem(8)} ${rem(12)}`,
     borderRadius: theme.radius.sm,
     textDecoration: 'none',
@@ -69,8 +70,6 @@ const useStyles = createStyles(theme => ({
       theme.colorScheme === 'dark'
         ? theme.colors.dark[0]
         : theme.colors.gray[7],
-    fontWeight: 500,
-
     '&:hover': {
       backgroundColor:
         theme.colorScheme === 'dark'
@@ -127,7 +126,7 @@ export default function Header({ links }: HeaderProps) {
         <Flex className={classes.logo_container}>
           <Logo />
         </Flex>
-        <Group spacing={5} className={classes.links}>
+        <Group spacing={60} className={classes.links}>
           {items}
         </Group>
         <Burger

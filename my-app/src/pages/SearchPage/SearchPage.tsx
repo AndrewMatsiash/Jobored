@@ -65,7 +65,7 @@ export const SearchPage = () => {
   }, [dataSearch]);
 
   return (
-    <Flex>
+    <Flex gap={28}>
       <div className={classes.filtersFormContainer}>
         <FiltersForm onSearch={handleSearchForm} />
       </div>

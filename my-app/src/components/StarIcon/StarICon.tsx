@@ -11,6 +11,7 @@ export const StarICon: React.FC<IStarIConProps> = ({
 }) => {
   return (
     <svg
+      style={{ cursor: 'pointer' }}
       onClick={onClick}
       width="22"
       height="20"

@@ -34,16 +34,17 @@ export const JobCard: React.FC<JobCardInterface> = ({ vacancy, onChange }) => {
   return (
     <Card shadow="sm" padding={'xl'}>
       <Stack spacing={'sm'}>
-        <Flex justify={'end'}>
+        <Flex justify={'space-between'}>
+          <Text size="xl" weight="600" lh="24px">
+            <Link to={`/job/${vacancy.id}`}>{vacancy.profession}</Link>
+          </Text>
           <StarICon
             onClick={handlerClick}
             fill={isSelect ? '#5E96FC' : 'none'}
             stroke={isSelect ? '#5E96FC' : '#ACADB9'}
           />
         </Flex>
-        <Text size="xl" weight={600}>
-          <Link to={`/job/${vacancy.id}`}>{vacancy.profession}</Link>
-        </Text>
+
         <Flex gap="lg">
           <Text weight={500} c={'myColor.2'}>
             з/п от {vacancy.payment_from} - {vacancy.payment_to} rub
@@ -52,9 +53,15 @@ export const JobCard: React.FC<JobCardInterface> = ({ vacancy, onChange }) => {
             {vacancy.type_of_work.title}
           </Text>
         </Flex>
-        <Flex align="center">
-          <IconMapPin size={'13px'} />
-          <Text ml={'xs'}>{vacancy.town.title}</Text>
+        <Flex align="center" gap={'11.33px'}>
+          <IconMapPin
+            color="#ACADB9"
+            style={{
+              width: '13.33px',
+              height: '16.09px',
+            }}
+          />
+          <Text lh="19px">{vacancy.town.title}</Text>
         </Flex>
       </Stack>
     </Card>
