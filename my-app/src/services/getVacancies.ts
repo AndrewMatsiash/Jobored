@@ -22,9 +22,7 @@ export const getVacancies = async (
   salaryTo?: string
 ): Promise<response | undefined> => {
   try {
-    let url = `${BASE_URL}2.0/vacancies/?page=${page}&count=${COUNT_ELEMENTS_PAGE}&keyword=${encodeURIComponent(
-      text
-    )}&published=1&no_agreement=1`;
+    let url = `${BASE_URL}2.0/vacancies/?page=${page}&count=${COUNT_ELEMENTS_PAGE}&keyword=${text}&published=1`;
 
     if (text) {
       url += `&catalogues=${industry}`;
@@ -34,6 +32,10 @@ export const getVacancies = async (
       url += `&catalogues=${industry}`;
     }
 
+    if (salaryFrom || salaryTo) {
+      url += `&no_agreement=1`;
+    }
+
     if (salaryFrom) {
       url += `&payment_from=${salaryFrom}`;
     }
@@ -41,7 +43,6 @@ export const getVacancies = async (
     if (salaryTo) {
       url += `&payment_to=${salaryTo}`;
     }
-    console.log(await getAccessToken());
 
     const res = await fetch(url, {
       headers: {

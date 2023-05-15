@@ -69,7 +69,7 @@ export const SearchPage = () => {
       <div className={classes.filtersFormContainer}>
         <FiltersForm onSearch={handleSearchForm} />
       </div>
-      <Stack spacing={'md'} className={classes.container}>
+      <Stack spacing="md" className={classes.container}>
         <SearchBar onSearch={handleSearchInput} />
         {isLoading ? (
           <Stack justify="center" align="center" style={{ flexGrow: '1' }}>

@@ -72,14 +72,14 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
 
   return (
     <Card p="lg" style={{ overflow: 'visible' }}>
-      <Flex align="center" justify="space-between" mb={32}>
-        <Title fz={'xl'}>Фильтры</Title>
+      <Flex align="center" justify="space-between" mb="32">
+        <Title fz="xl">Фильтры</Title>
         <Button
           fw={500}
           fz={14}
           rightIcon={
             <Center>
-              <IconX style={{ paddingTop: '3px' }} width={'10.32px'} />
+              <IconX style={{ paddingTop: '3px' }} width="10.32px" />
             </Center>
           }
           onClick={() => {

@@ -32,8 +32,8 @@ export const JobCard: React.FC<JobCardInterface> = ({ vacancy, onChange }) => {
   };
 
   return (
-    <Card shadow="sm" padding={'xl'}>
-      <Stack spacing={'sm'}>
+    <Card shadow="sm" padding="xl">
+      <Stack spacing="sm">
         <Flex justify={'space-between'}>
           <Text size="xl" weight="600" lh="24px">
             <Link to={`/job/${vacancy.id}`}>{vacancy.profession}</Link>
@@ -49,11 +49,11 @@ export const JobCard: React.FC<JobCardInterface> = ({ vacancy, onChange }) => {
           <Text weight={500} c={'myColor.2'}>
             з/п от {vacancy.payment_from} - {vacancy.payment_to} rub
           </Text>
-          <Text display={'list-item'} lts={'disc'}>
+          <Text display="list-item" lts="disc">
             {vacancy.type_of_work.title}
           </Text>
         </Flex>
-        <Flex align="center" gap={'11.33px'}>
+        <Flex align="center" gap="11.33px">
           <IconMapPin
             color="#ACADB9"
             style={{
