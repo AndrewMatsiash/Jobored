@@ -22,10 +22,10 @@ export const getVacancies = async (
   salaryTo?: string
 ): Promise<response | undefined> => {
   try {
-    let url = `${BASE_URL}2.0/vacancies/?page=${page}&count=${COUNT_ELEMENTS_PAGE}&keyword=${text}&published=1`;
+    let url = `${BASE_URL}2.0/vacancies/?page=${page}&count=${COUNT_ELEMENTS_PAGE}&published=1`;
 
     if (text) {
-      url += `&catalogues=${industry}`;
+      url += `&keyword=${text}`;
     }
 
     if (industry) {

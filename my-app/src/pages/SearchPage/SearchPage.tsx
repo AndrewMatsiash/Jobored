@@ -1,5 +1,5 @@
 import React from 'react';
-import { Flex, Group, Pagination, Stack, createStyles } from '@mantine/core';
+import { Flex, Pagination, Stack, createStyles } from '@mantine/core';
 import FiltersForm from './ components/FiltersForm';
 import JobCard from './ components/JobCard';
 import SearchBar from './ components/SearchBar';

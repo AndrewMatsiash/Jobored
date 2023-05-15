@@ -23,7 +23,7 @@ export const FavoritesPage = () => {
 
   return (
     <div>
-      <Stack spacing={'md'}>
+      <Stack maw={773} m={'0 auto'} spacing={'md'}>
         {paginateArray.map((vacancy: IVacancy) => (
           <JobCard key={vacancy.id} vacancy={vacancy} onChange={onChange} />
         ))}

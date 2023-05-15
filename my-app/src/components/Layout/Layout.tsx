@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import './Layout.css';
 import Header from '../Header';
-import { Center, createStyles } from '@mantine/core';
+import { createStyles } from '@mantine/core';
 
 const useStyles = createStyles(theme => ({
   container: {
@@ -9,12 +9,11 @@ const useStyles = createStyles(theme => ({
     flexDirection: 'column',
     maxWidth: '1116px',
     margin: '0 auto',
-    minHeight: '100vh',
   },
   main: {
-    puddingTop: '40px',
     width: '100%',
-    padding: '40px',
+    minHeight: '100%',
+    paddingTop: '40px',
     backgroundColor: '#F5F5F5',
   },
 }));
@@ -22,16 +21,21 @@ const useStyles = createStyles(theme => ({
 export default function Layout() {
   const { classes } = useStyles();
   return (
-    <div className={classes.container}>
-      <Header
-        links={[
-          { label: 'Поиск вакансий', link: '/' },
-          { label: 'Избранное', link: '/favorites' },
-        ]}
-      />
+    <>
+      <div className={classes.container}>
+        <Header
+          links={[
+            { label: 'Поиск вакансий', link: '/' },
+            { label: 'Избранное', link: '/favorites' },
+          ]}
+        />
+      </div>
+
       <main className={classes.main}>
-        <Outlet />
+        <div className={classes.container}>
+          <Outlet />
+        </div>
       </main>
-    </div>
+    </>
   );
 }
