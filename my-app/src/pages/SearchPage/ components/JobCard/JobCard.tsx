@@ -32,7 +32,7 @@ export const JobCard: React.FC<JobCardInterface> = ({ vacancy, onChange }) => {
   };
 
   return (
-    <Card shadow="sm" padding="xl">
+    <Card maw={773} w="100%" shadow="sm" padding="xl">
       <Stack spacing="sm">
         <Flex justify={'space-between'}>
           <Text size="xl" weight="600" lh="24px">

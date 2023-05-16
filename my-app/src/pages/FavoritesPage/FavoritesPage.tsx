@@ -1,6 +1,7 @@
 import {
   Button,
   Center,
+  Container,
   Flex,
   Image,
   Pagination,
@@ -32,18 +33,20 @@ export const FavoritesPage = () => {
   };
 
   return favorites.length ? (
-    <Stack w={773} mx="auto" spacing="md">
-      {paginateArray.map((vacancy: IVacancy) => (
-        <JobCard key={vacancy.id} vacancy={vacancy} onChange={onChange} />
-      ))}
-      <Flex justify="center">
-        <Pagination
-          value={pageActive}
-          onChange={setPageActive}
-          total={totalPages}
-        />
-      </Flex>
-    </Stack>
+    <Container maw={773} w="100%">
+      <Stack align="center" mx="auto" spacing="md">
+        {paginateArray.map((vacancy: IVacancy) => (
+          <JobCard key={vacancy.id} vacancy={vacancy} onChange={onChange} />
+        ))}
+        <Flex justify="center">
+          <Pagination
+            value={pageActive}
+            onChange={setPageActive}
+            total={totalPages}
+          />
+        </Flex>
+      </Stack>
+    </Container>
   ) : (
     <Center style={{ flex: '1' }} miw={327} mx="auto">
       <Stack spacing={32} align="center">

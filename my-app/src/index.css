@@ -22,3 +22,9 @@ html {
 body {
   height: 100%;
 }
+
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 12px;
+  }
+}

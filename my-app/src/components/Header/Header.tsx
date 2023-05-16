@@ -44,6 +44,9 @@ const useStyles = createStyles(theme => ({
 
   logo_container: {
     flex: '0 1 386px',
+    [theme.fn.smallerThan('sm')]: {
+      flexGrow: 1,
+    },
   },
 
   links: {

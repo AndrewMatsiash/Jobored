@@ -13,6 +13,7 @@ import { getVacancies } from '../../services/getVacancies';
 import { IVacancy } from '../../types/vacancy';
 import { IDataFilterForm } from './ components/FiltersForm/FiltersForm';
 import { calculateTotalPages } from '../../utils/calculateTotalPages';
+import { useMediaQuery } from '@mantine/hooks';
 
 const useStyles = createStyles(theme => ({
   filtersFormContainer: {
@@ -25,6 +26,9 @@ const useStyles = createStyles(theme => ({
 
 export const SearchPage = () => {
   const { classes } = useStyles();
+  const largeScreen = useMediaQuery('(min-width: 60em)');
+  console.log(largeScreen);
+
   const [vacancies, setVacancies] = React.useState<IVacancy[]>([]);
   const [totalPages, setTotalPages] = React.useState(1);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -71,12 +75,12 @@ export const SearchPage = () => {
   }, [dataSearch]);
 
   return (
-    <Container maw={'1116px'}>
-      <Flex gap={28}>
+    <Container maw="1136px" w="100%" mx="auto" px={10}>
+      <Flex direction={!largeScreen ? 'column' : 'row'} gap={28}>
         <div className={classes.filtersFormContainer}>
           <FiltersForm onSearch={handleSearchForm} />
         </div>
-        <Stack spacing="md" className={classes.container}>
+        <Stack align="center" spacing="md" className={classes.container}>
           <SearchBar onSearch={handleSearchInput} />
           {isLoading ? (
             <Stack justify="center" align="center" style={{ flexGrow: '1' }}>
