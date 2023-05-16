@@ -1,10 +1,20 @@
+import {
+  Button,
+  Center,
+  Flex,
+  Image,
+  Pagination,
+  Stack,
+  Text,
+} from '@mantine/core';
 import React from 'react';
-import JobCard from '../SearchPage/ components/JobCard';
-import { Stack, Flex, Pagination } from '@mantine/core';
 import { IVacancy } from '../../types/vacancy';
 import { getPaginateArray } from '../../utils/getPaginateArray';
+import JobCard from '../SearchPage/ components/JobCard';
+import { useNavigate } from 'react-router-dom';
 
 export const FavoritesPage = () => {
+  const navigation = useNavigate();
   const [favorites, setFavorites] = React.useState<IVacancy[]>([]);
   const [pageActive, setPageActive] = React.useState(1);
   const totalElements = 4;
@@ -13,7 +23,7 @@ export const FavoritesPage = () => {
   React.useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
     setFavorites(favorites);
-  }, [favorites]);
+  }, []);
 
   const paginateArray = getPaginateArray<IVacancy>(favorites, pageActive, 4);
 
@@ -21,20 +31,30 @@ export const FavoritesPage = () => {
     setFavorites(data);
   };
 
-  return (
-    <div>
-      <Stack maw={773} m={'0 auto'} spacing={'md'}>
-        {paginateArray.map((vacancy: IVacancy) => (
-          <JobCard key={vacancy.id} vacancy={vacancy} onChange={onChange} />
-        ))}
-        <Flex justify="center">
-          <Pagination
-            value={pageActive}
-            onChange={setPageActive}
-            total={totalPages}
-          />
-        </Flex>
+  return favorites.length ? (
+    <Stack w={773} mx="auto" spacing="md">
+      {paginateArray.map((vacancy: IVacancy) => (
+        <JobCard key={vacancy.id} vacancy={vacancy} onChange={onChange} />
+      ))}
+      <Flex justify="center">
+        <Pagination
+          value={pageActive}
+          onChange={setPageActive}
+          total={totalPages}
+        />
+      </Flex>
+    </Stack>
+  ) : (
+    <Center style={{ flex: '1' }} miw={327} mx="auto">
+      <Stack spacing={32} align="center">
+        <Image src="./notFoundFavoriteBg.svg" alt="notFoundFavorite" />
+        <Text weight={700} align="center">
+          Упс, здесь еще ничего нет!
+        </Text>
+        <Button variant="light" w={164} onClick={() => navigation('/')}>
+          поиск вакансий
+        </Button>
       </Stack>
-    </div>
+    </Center>
   );
 };

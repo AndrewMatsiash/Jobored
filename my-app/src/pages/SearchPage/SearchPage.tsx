@@ -1,5 +1,11 @@
 import React from 'react';
-import { Flex, Pagination, Stack, createStyles } from '@mantine/core';
+import {
+  Container,
+  Flex,
+  Pagination,
+  Stack,
+  createStyles,
+} from '@mantine/core';
 import FiltersForm from './ components/FiltersForm';
 import JobCard from './ components/JobCard';
 import SearchBar from './ components/SearchBar';
@@ -65,29 +71,31 @@ export const SearchPage = () => {
   }, [dataSearch]);
 
   return (
-    <Flex gap={28}>
-      <div className={classes.filtersFormContainer}>
-        <FiltersForm onSearch={handleSearchForm} />
-      </div>
-      <Stack spacing="md" className={classes.container}>
-        <SearchBar onSearch={handleSearchInput} />
-        {isLoading ? (
-          <Stack justify="center" align="center" style={{ flexGrow: '1' }}>
-            <div>...Loading...</div>
-          </Stack>
-        ) : (
-          vacancies.map(vacancy => (
-            <JobCard key={vacancy.id} vacancy={vacancy} />
-          ))
-        )}
-        <Flex justify="center">
-          <Pagination
-            value={dataSearch.page}
-            onChange={handlePagination}
-            total={totalPages}
-          />
-        </Flex>
-      </Stack>
-    </Flex>
+    <Container maw={'1116px'}>
+      <Flex gap={28}>
+        <div className={classes.filtersFormContainer}>
+          <FiltersForm onSearch={handleSearchForm} />
+        </div>
+        <Stack spacing="md" className={classes.container}>
+          <SearchBar onSearch={handleSearchInput} />
+          {isLoading ? (
+            <Stack justify="center" align="center" style={{ flexGrow: '1' }}>
+              <div>...Loading...</div>
+            </Stack>
+          ) : (
+            vacancies.map(vacancy => (
+              <JobCard key={vacancy.id} vacancy={vacancy} />
+            ))
+          )}
+          <Flex justify="center">
+            <Pagination
+              value={dataSearch.page}
+              onChange={handlePagination}
+              total={totalPages}
+            />
+          </Flex>
+        </Stack>
+      </Flex>
+    </Container>
   );
 };

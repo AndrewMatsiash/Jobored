@@ -122,7 +122,7 @@ export default function Header({ links }: HeaderProps) {
 
   return (
     <header className={classes.header}>
-      <Container p="xl" className={classes.header_container}>
+      <Container maw="1116px" p="xl" className={classes.header_container}>
         <Flex className={classes.logo_container}>
           <Logo />
         </Flex>
