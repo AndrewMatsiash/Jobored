@@ -50,7 +50,7 @@ export const FavoritesPage = () => {
   ) : (
     <Center style={{ flex: '1' }} miw={327} mx="auto">
       <Stack spacing={32} align="center">
-        <Image src="./notFoundFavoriteBg.svg" alt="notFoundFavorite" />
+        <Image src="./icons/notFoundFavoriteBg.svg" alt="notFoundFavorite" />
         <Text weight={700} align="center">
           Упс, здесь еще ничего нет!
         </Text>

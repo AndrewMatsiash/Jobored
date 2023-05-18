@@ -19,12 +19,14 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
   return (
     <Input
+      data-elem="search-input"
       w="100%"
       onChange={handleChange}
-      icon={<IconSearch style={{ width: '14px', height: '14px' }} />}
+      icon={<IconSearch style={{ width: '12.57px', height: '12.57px' }} />}
       placeholder="Введите название вакансии"
       rightSection={
         <Button
+          data-elem="search-button"
           radius={8}
           onClick={handleSearch}
           right="20px"

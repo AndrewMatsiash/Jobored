@@ -56,6 +56,7 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
         <Flex align="center" justify="space-between" mb="32">
           <Title fz="xl">Фильтры</Title>
           <Button
+            type="reset"
             fw={500}
             fz={14}
             rightIcon={
@@ -78,6 +79,7 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
             </Title>
 
             <Select
+              data-elem="industry-select"
               mb={20}
               c="gray.5"
               rightSectionProps={{ style: { paddingRight: 12 } }}
@@ -93,6 +95,7 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
             </Title>
 
             <NumberInput
+              data-elem="salary-from-input"
               rightSectionProps={{
                 style: {
                   marginRight: '12px',
@@ -111,11 +114,10 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
             />
 
             <NumberInput
+              data-elem="salary-to-input"
               rightSectionProps={{
                 style: {
                   marginRight: '12px',
-                  hight: '10px',
-                  display: 'block',
                 },
               }}
               mb={20}
@@ -130,7 +132,12 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
               {...form.getInputProps('paymentTo')}
             />
           </Stack>
-          <Button type="submit" variant="filled" style={{ width: '100%' }}>
+          <Button
+            data-elem="search-button"
+            type="submit"
+            variant="filled"
+            w="100%"
+          >
             Применить
           </Button>
         </form>
