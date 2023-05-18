@@ -1,7 +1,10 @@
 import React from 'react';
 import {
+  Box,
+  Center,
   Container,
   Flex,
+  Loader,
   Pagination,
   Stack,
   createStyles,
@@ -15,20 +18,8 @@ import { IDataFilterForm } from './ components/FiltersForm/FiltersForm';
 import { calculateTotalPages } from '../../utils/calculateTotalPages';
 import { useMediaQuery } from '@mantine/hooks';
 
-const useStyles = createStyles(theme => ({
-  filtersFormContainer: {
-    flexBasis: '315px',
-  },
-  container: {
-    flexGrow: 1,
-  },
-}));
-
 export const SearchPage = () => {
-  const { classes } = useStyles();
   const largeScreen = useMediaQuery('(min-width: 60em)');
-  console.log(largeScreen);
-
   const [vacancies, setVacancies] = React.useState<IVacancy[]>([]);
   const [totalPages, setTotalPages] = React.useState(1);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -77,27 +68,26 @@ export const SearchPage = () => {
   return (
     <Container maw="1136px" w="100%" mx="auto" px={10}>
       <Flex direction={!largeScreen ? 'column' : 'row'} gap={28}>
-        <div className={classes.filtersFormContainer}>
-          <FiltersForm onSearch={handleSearchForm} />
-        </div>
-        <Stack align="center" spacing="md" className={classes.container}>
+        <FiltersForm onSearch={handleSearchForm} />
+        <Stack align="center" spacing="md" style={{ flexGrow: 1 }}>
           <SearchBar onSearch={handleSearchInput} />
           {isLoading ? (
-            <Stack justify="center" align="center" style={{ flexGrow: '1' }}>
-              <div>...Loading...</div>
-            </Stack>
+            <Center>
+              <Loader />
+            </Center>
           ) : (
-            vacancies.map(vacancy => (
-              <JobCard key={vacancy.id} vacancy={vacancy} />
-            ))
+            <>
+              {vacancies.map(vacancy => (
+                <JobCard key={vacancy.id} vacancy={vacancy} />
+              ))}
+
+              <Pagination
+                value={dataSearch.page}
+                onChange={handlePagination}
+                total={totalPages}
+              />
+            </>
           )}
-          <Flex justify="center">
-            <Pagination
-              value={dataSearch.page}
-              onChange={handlePagination}
-              total={totalPages}
-            />
-          </Flex>
         </Stack>
       </Flex>
     </Container>

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import JobCard from '../SearchPage/ components/JobCard';
 import { useFetchDataVacancy } from '../../hooks/useFetchDataVacancy';
-import { Center, Container, Space, Stack } from '@mantine/core';
+import { Center, Container, Loader, Space, Stack } from '@mantine/core';
 
 export const JobPage = () => {
   const { id } = useParams();
@@ -11,7 +11,7 @@ export const JobPage = () => {
   const descriptions = vacancy?.vacancyRichText;
 
   return (
-    <Container maw={773}>
+    <Container maw={793} mx={'auto'} w="100%" px={10}>
       {!isLoading && vacancy && descriptions ? (
         <Stack spacing="lg">
           <JobCard vacancy={vacancy} />
@@ -19,7 +19,7 @@ export const JobPage = () => {
         </Stack>
       ) : (
         <Center style={{ height: '100%' }}>
-          <div>Loading...</div>
+          <Loader />
         </Center>
       )}
     </Container>

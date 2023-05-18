@@ -10,10 +10,11 @@ export const useFetchDataCategories = () => {
   React.useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-
       try {
         const data = await getIndustryCatalog();
-        setCategories(data);
+        if (data) {
+          setCategories(data);
+        }
       } catch (error) {
         setError(error);
       }
@@ -21,6 +22,5 @@ export const useFetchDataCategories = () => {
     };
     fetchData();
   }, []);
-
   return { categories, isLoading, error };
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import './SearchBar.css';
 import { Input, Button } from '@mantine/core';
 import { IconSearch } from '@tabler/icons-react';
 
