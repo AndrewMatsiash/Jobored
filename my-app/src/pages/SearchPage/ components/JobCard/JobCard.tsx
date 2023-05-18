@@ -1,4 +1,4 @@
-import { Card, Flex, Stack, Text } from '@mantine/core';
+import { Box, Button, Card, Flex, Stack, Text } from '@mantine/core';
 import { Link, useLocation } from 'react-router-dom';
 import { IconMapPin } from '@tabler/icons-react';
 import { IVacancy } from '../../../../types/vacancy';
@@ -31,11 +31,6 @@ export const JobCard: React.FC<JobCardInterface> = ({ vacancy, onChange }) => {
     }
   };
 
-  const fillColorStarIcon = isSelect ? `${COLORS.BlueMain500}` : 'none';
-  const strokeColorStarIcon = isSelect
-    ? `${COLORS.BlueMain500}`
-    : `${COLORS.Grey500}`;
-
   const showPaymentJob = () => {
     if (vacancy.payment_from && vacancy.payment_to) {
       return `${vacancy.payment_from}-${vacancy.payment_to}`;
@@ -47,16 +42,27 @@ export const JobCard: React.FC<JobCardInterface> = ({ vacancy, onChange }) => {
   };
 
   return (
-    <Card maw={773} w="100%" shadow="sm" padding="xl">
+    <Card
+      data-elem={`vacancy-_${vacancy.id}`}
+      maw={773}
+      w="100%"
+      shadow="sm"
+      padding="xl"
+    >
       <Stack spacing="sm">
         <Flex justify={'space-between'}>
           <Text size="xl" weight="600" lh="24px">
             <Link to={`/job/${vacancy.id}`}>{vacancy.profession}</Link>
           </Text>
           <StarICon
+            data-elem={`vacancy-${vacancy.id}-shortlist-button`}
+            style={{ cursor: 'pointer' }}
             onClick={handlerClick}
-            fill={fillColorStarIcon}
-            stroke={strokeColorStarIcon}
+            width="22"
+            height="20"
+            viewBox="0 0 22 20"
+            fill={isSelect ? `${COLORS.BlueMain500}` : 'none'}
+            stroke={isSelect ? `${COLORS.BlueMain500}` : `${COLORS.Grey500}`}
           />
         </Flex>
 
