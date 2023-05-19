@@ -1,4 +1,4 @@
-import { Box, Button, Card, Flex, Stack, Text } from '@mantine/core';
+import { Card, Flex, Stack, Text } from '@mantine/core';
 import { Link, useLocation } from 'react-router-dom';
 import { IconMapPin } from '@tabler/icons-react';
 import { IVacancy } from '../../../../types/vacancy';

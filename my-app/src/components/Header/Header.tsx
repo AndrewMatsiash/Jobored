@@ -10,7 +10,7 @@ import {
   Flex,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Logo from '../Logo';
 
 const useStyles = createStyles(theme => ({
@@ -21,7 +21,7 @@ const useStyles = createStyles(theme => ({
 
   dropdown: {
     position: 'absolute',
-    top: 50,
+    top: 0,
     left: 0,
     right: 0,
     zIndex: 0,
@@ -57,6 +57,7 @@ const useStyles = createStyles(theme => ({
   },
 
   burger: {
+    zIndex: 1,
     [theme.fn.largerThan('sm')]: {
       display: 'none',
     },
@@ -103,8 +104,8 @@ interface HeaderProps {
 }
 
 export default function Header({ links }: HeaderProps) {
+  const location = useLocation();
   const [opened, { toggle, close }] = useDisclosure(false);
-  const [active, setActive] = useState(links[0].link);
   const { classes, cx } = useStyles();
 
   const items = links.map(link => (
@@ -112,10 +113,9 @@ export default function Header({ links }: HeaderProps) {
       key={link.label}
       to={link.link}
       className={cx(classes.link, {
-        [classes.linkActive]: active === link.link,
+        [classes.linkActive]: location.pathname === link.link,
       })}
       onClick={() => {
-        setActive(link.link);
         close();
       }}
     >

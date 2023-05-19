@@ -1,6 +1,6 @@
 import React from 'react';
 import { Input, Button } from '@mantine/core';
-import { IconSearch } from '@tabler/icons-react';
+import { ReactComponent as SearchIcon } from '../../../../assets/icons/SearchIcon.svg';
 
 interface SearchBarProps {
   onSearch: (text: string) => void;
@@ -22,7 +22,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
       data-elem="search-input"
       w="100%"
       onChange={handleChange}
-      icon={<IconSearch style={{ width: '12.57px', height: '12.57px' }} />}
+      icon={<SearchIcon />}
       placeholder="Введите название вакансии"
       rightSection={
         <Button

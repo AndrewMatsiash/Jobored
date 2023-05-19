@@ -6,13 +6,17 @@ import {
   Button,
   Select,
   Flex,
-  Center,
   Box,
   NumberInput,
 } from '@mantine/core';
-import { IconChevronDown, IconX } from '@tabler/icons-react';
-import { useForm } from '@mantine/form';
 import { useFetchDataCategories } from '../../../../hooks/useFetchCategories';
+import { ReactComponent as IconX } from '../../../../assets/icons/crossIcon.svg';
+import { ReactComponent as IconChevronDown } from '../../../../assets/icons/IconChevronDown.svg';
+import NumberInputCustom from './components/NumberInputCustom';
+import {
+  FiltersFormProvider,
+  useFiltersForm,
+} from '../../../../context/form-context.ts';
 
 interface IDataSelectIndustry {
   value: string;
@@ -38,7 +42,8 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
   const resetValuesFieldsForm = () => {
     form.reset();
   };
-  const form = useForm({
+
+  const form = useFiltersForm({
     initialValues: {
       industry: '',
       paymentFrom: '',
@@ -47,6 +52,8 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
   });
 
   const handleSubmit = (event: IDataFilterForm) => {
+    console.log(event);
+
     onSearch(event);
   };
 
@@ -59,11 +66,7 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
             type="reset"
             fw={500}
             fz={14}
-            rightIcon={
-              <Center>
-                <IconX style={{ paddingTop: '3px' }} width="10.32px" />
-              </Center>
-            }
+            rightIcon={<IconX />}
             onClick={resetValuesFieldsForm}
             color="gray"
             variant="white"
@@ -71,76 +74,57 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
             Сбросить все
           </Button>
         </Flex>
+        <FiltersFormProvider form={form}>
+          <form onSubmit={form.onSubmit(handleSubmit)}>
+            <Stack spacing="0">
+              <Title mb={8} order={5}>
+                Отрасль
+              </Title>
 
-        <form onSubmit={form.onSubmit(handleSubmit)}>
-          <Stack spacing="0">
-            <Title mb={8} order={5}>
-              Отрасль
-            </Title>
+              <Select
+                data-elem="industry-select"
+                mb={20}
+                c="gray.5"
+                rightSectionProps={{ style: { paddingRight: 12 } }}
+                rightSection={<IconChevronDown />}
+                placeholder="Выберете отрасль"
+                searchable
+                data={optionsSelect}
+                {...form.getInputProps('industry')}
+              />
 
-            <Select
-              data-elem="industry-select"
-              mb={20}
-              c="gray.5"
-              rightSectionProps={{ style: { paddingRight: 12 } }}
-              rightSection={<IconChevronDown />}
-              placeholder="Выберете отрасль"
-              searchable
-              data={optionsSelect}
-              {...form.getInputProps('industry')}
-            />
+              <Title mb={8} order={5}>
+                Оклад
+              </Title>
 
-            <Title mb={8} order={5}>
-              Оклад
-            </Title>
+              <NumberInputCustom
+                placeholder="от"
+                mb={20}
+                min={0}
+                withAsterisk
+                data-elem="salary-from-input"
+                name="paymentFrom"
+              />
 
-            <NumberInput
-              data-elem="salary-from-input"
-              rightSectionProps={{
-                style: {
-                  marginRight: '12px',
-                },
-              }}
-              mb={20}
-              styles={{
-                control: {
-                  borderColor: 'transparent',
-                },
-              }}
-              min={0}
-              placeholder="от"
-              withAsterisk
-              {...form.getInputProps('paymentFrom')}
-            />
-
-            <NumberInput
-              data-elem="salary-to-input"
-              rightSectionProps={{
-                style: {
-                  marginRight: '12px',
-                },
-              }}
-              mb={20}
-              styles={{
-                control: {
-                  borderColor: 'transparent',
-                },
-              }}
-              min={0}
-              placeholder="от"
-              withAsterisk
-              {...form.getInputProps('paymentTo')}
-            />
-          </Stack>
-          <Button
-            data-elem="search-button"
-            type="submit"
-            variant="filled"
-            w="100%"
-          >
-            Применить
-          </Button>
-        </form>
+              <NumberInputCustom
+                placeholder="до"
+                mb={20}
+                min={0}
+                withAsterisk
+                data-elem="salary-to-input"
+                name="paymentTo"
+              />
+            </Stack>
+            <Button
+              data-elem="search-button"
+              type="submit"
+              variant="filled"
+              w="100%"
+            >
+              Применить
+            </Button>
+          </form>
+        </FiltersFormProvider>
       </Card>
     </Box>
   );
