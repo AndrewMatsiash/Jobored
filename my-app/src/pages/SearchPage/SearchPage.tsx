@@ -7,7 +7,6 @@ import {
   Loader,
   Pagination,
   Stack,
-  createStyles,
 } from '@mantine/core';
 import FiltersForm from './ components/FiltersForm';
 import JobCard from './ components/JobCard';
@@ -19,7 +18,7 @@ import { calculateTotalPages } from '../../utils/calculateTotalPages';
 import { useMediaQuery } from '@mantine/hooks';
 
 export const SearchPage = () => {
-  const largeScreen = useMediaQuery('(min-width: 60em)');
+  const largeScreen = useMediaQuery('(min-width: 30em)');
   const [vacancies, setVacancies] = React.useState<IVacancy[]>([]);
   const [totalPages, setTotalPages] = React.useState(1);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -67,7 +66,7 @@ export const SearchPage = () => {
 
   return (
     <Container maw="1136px" w="100%" mx="auto" px={10}>
-      <Flex direction={!largeScreen ? 'column' : 'row'} gap={28}>
+      <Flex direction={largeScreen ? 'row' : 'column'} gap={28}>
         <FiltersForm onSearch={handleSearchForm} />
         <Stack align="center" spacing="md" style={{ flexGrow: 1 }}>
           <SearchBar onSearch={handleSearchInput} />

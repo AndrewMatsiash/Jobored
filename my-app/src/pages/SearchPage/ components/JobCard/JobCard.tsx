@@ -1,4 +1,4 @@
-import { Card, Flex, Stack, Text } from '@mantine/core';
+import { Box, Card, Flex, Stack, Text } from '@mantine/core';
 import { Link, useLocation } from 'react-router-dom';
 import { IconMapPin } from '@tabler/icons-react';
 import { IVacancy } from '../../../../types/vacancy';
@@ -54,16 +54,18 @@ export const JobCard: React.FC<JobCardInterface> = ({ vacancy, onChange }) => {
           <Text size="xl" weight="600" lh="24px">
             <Link to={`/job/${vacancy.id}`}>{vacancy.profession}</Link>
           </Text>
-          <StarICon
-            data-elem={`vacancy-${vacancy.id}-shortlist-button`}
-            style={{ cursor: 'pointer' }}
-            onClick={handlerClick}
-            width="22"
-            height="20"
-            viewBox="0 0 22 20"
-            fill={isSelect ? `${COLORS.BlueMain500}` : 'none'}
-            stroke={isSelect ? `${COLORS.BlueMain500}` : `${COLORS.Grey500}`}
-          />
+          <Box w={22} h={20}>
+            <StarICon
+              data-elem={`vacancy-${vacancy.id}-shortlist-button`}
+              style={{ cursor: 'pointer' }}
+              onClick={handlerClick}
+              width="22"
+              height="20"
+              viewBox="0 0 22 20"
+              fill={isSelect ? `${COLORS.BlueMain500}` : 'none'}
+              stroke={isSelect ? `${COLORS.BlueMain500}` : `${COLORS.Grey500}`}
+            />
+          </Box>
         </Flex>
 
         <Flex gap="lg">

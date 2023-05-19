@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  Card,
-  Title,
-  Stack,
-  Button,
-  Select,
-  Flex,
-  Box,
-  NumberInput,
-} from '@mantine/core';
+import { Card, Title, Stack, Button, Select, Flex, Box } from '@mantine/core';
 import { useFetchDataCategories } from '../../../../hooks/useFetchCategories';
 import { ReactComponent as IconX } from '../../../../assets/icons/crossIcon.svg';
 import { ReactComponent as IconChevronDown } from '../../../../assets/icons/IconChevronDown.svg';

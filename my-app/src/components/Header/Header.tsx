@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   createStyles,
   Container,
@@ -6,12 +5,11 @@ import {
   Burger,
   Paper,
   Transition,
-  rem,
   Flex,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Link, useLocation } from 'react-router-dom';
-import Logo from '../Logo';
+import { ReactComponent as Logo } from '../../assets/icons/Logo.svg';
 
 const useStyles = createStyles(theme => ({
   header: {
@@ -30,7 +28,7 @@ const useStyles = createStyles(theme => ({
     borderTopWidth: 0,
     overflow: 'hidden',
 
-    [theme.fn.largerThan('sm')]: {
+    [theme.fn.largerThan('xs')]: {
       display: 'none',
     },
   },
@@ -43,22 +41,24 @@ const useStyles = createStyles(theme => ({
   },
 
   logo_container: {
-    flex: '0 1 386px',
-    [theme.fn.smallerThan('sm')]: {
+    flex: '0 1 421px',
+    [theme.fn.smallerThan('md')]: {
+      flexBasis: '250px',
+    },
+    [theme.fn.smallerThan('xs')]: {
       flexGrow: 1,
     },
   },
 
   links: {
-    flex: '1',
-    [theme.fn.smallerThan('sm')]: {
+    [theme.fn.smallerThan('xs')]: {
       display: 'none',
     },
   },
 
   burger: {
     zIndex: 1,
-    [theme.fn.largerThan('sm')]: {
+    [theme.fn.largerThan('xs')]: {
       display: 'none',
     },
   },
@@ -67,7 +67,6 @@ const useStyles = createStyles(theme => ({
     display: 'block',
     lineHeight: '20px',
     fontWeight: 400,
-    padding: `${rem(8)} ${rem(12)}`,
     borderRadius: theme.radius.sm,
     textDecoration: 'none',
     color:
