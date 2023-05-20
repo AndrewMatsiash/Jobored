@@ -15,7 +15,7 @@ export const useFetchDataVacancy = (id: string | undefined) => {
           const data = await getVacancyById(id);
           setCategories(data);
         }
-      } catch (error) {
+      } catch (error:any) {
         setError(error);
       }
       setIsLoading(false);

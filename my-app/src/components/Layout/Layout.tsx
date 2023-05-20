@@ -4,7 +4,7 @@ import { Stack, createStyles } from '@mantine/core';
 import { COLORS } from '../../constants/style';
 import { FAVORITE_PAGE, HOME_PAGE } from '../../constants/router';
 
-const useStyles = createStyles(theme => ({
+const useStyles = createStyles(() => ({
   main: {
     display: 'flex',
     flexDirection: 'column',

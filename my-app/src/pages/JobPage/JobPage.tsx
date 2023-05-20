@@ -6,7 +6,7 @@ import { Center, Container, Loader, Space, Stack } from '@mantine/core';
 export const JobPage = () => {
   const { id } = useParams();
 
-  const { vacancy, error, isLoading } = useFetchDataVacancy(id);
+  const { vacancy, isLoading } = useFetchDataVacancy(id);
 
   const descriptions = vacancy?.vacancyRichText;
 

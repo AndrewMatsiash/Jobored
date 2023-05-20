@@ -15,7 +15,7 @@ export const useFetchDataCategories = () => {
         if (data) {
           setCategories(data);
         }
-      } catch (error) {
+      } catch (error: any) {
         setError(error);
       }
       setIsLoading(false);
