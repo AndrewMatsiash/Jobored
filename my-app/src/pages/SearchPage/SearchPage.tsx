@@ -22,6 +22,7 @@ export const SearchPage = () => {
   const [vacancies, setVacancies] = React.useState<IVacancy[]>([]);
   const [totalPages, setTotalPages] = React.useState(1);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState(null);
   const [dataSearch, setDataSearch] = React.useState({
     page: 1,
     textInput: '',
@@ -79,7 +80,6 @@ export const SearchPage = () => {
               {vacancies.map(vacancy => (
                 <JobCard key={vacancy.id} vacancy={vacancy} />
               ))}
-
               <Pagination
                 value={dataSearch.page}
                 onChange={handlePagination}

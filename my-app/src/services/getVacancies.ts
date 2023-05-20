@@ -48,9 +48,10 @@ export const getVacancies = async (
       },
     });
 
-    const data = await res.json();
-
-    return data;
+    if (res.ok) {
+      const data = await res.json();
+      return data;
+    }
   } catch (error) {
     console.error('Error:', error);
   }
