@@ -17,20 +17,22 @@ export const NumberInputCustom: React.FC<NumberInputCustomProps> = ({
   name,
   ...props
 }) => {
-  const [hasIncremented, setHasIncremented] = React.useState(false);
+  const [isIncremented, setIsIncremented] = React.useState(false);
+  const [value, setValue] = React.useState(1);
   const form = useFiltersFormContext();
 
-  const value = parseInt(form.values[name]);
-
   const handleIncrement = () => {
-    setHasIncremented(true);
-    form.setValues({ [name]: value + 1 });
+    setIsIncremented(true);
+    setValue(prev => prev + 1);
+    form.setValues({ [name]: value });
   };
+
   const handleDecrement = () => {
     if (min !== undefined && value <= min) {
       return;
     }
-    form.setValues({ [name]: value - 1 });
+    setValue(prev => prev - 1);
+    form.setValues({ [name]: value });
   };
 
   return (
@@ -42,7 +44,7 @@ export const NumberInputCustom: React.FC<NumberInputCustomProps> = ({
           <IconsChevronDown onClick={handleDecrement} />
         </Stack>,
       ]}
-      value={hasIncremented ? value : ''}
+      value={isIncremented ? value : ''}
       {...props}
     />
   );

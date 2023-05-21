@@ -76,7 +76,7 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
                 data-elem="industry-select"
                 mb={20}
                 c="gray.5"
-                rightSectionProps={{ style: { paddingRight: 12 } }}
+                rightSectionProps={{ style: { paddingRight: 17, width: 31.6 } }}
                 rightSection={<IconChevronDown />}
                 placeholder="Выберете отрасль"
                 searchable
@@ -89,6 +89,7 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
               </Title>
 
               <NumberInputCustom
+                rightSectionProps={{ style: { paddingRight: 14.5 } }}
                 placeholder="от"
                 mb={20}
                 min={0}
@@ -98,6 +99,7 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
               />
 
               <NumberInputCustom
+                rightSectionProps={{ style: { paddingRight: 14.5 } }}
                 placeholder="до"
                 mb={20}
                 min={0}
