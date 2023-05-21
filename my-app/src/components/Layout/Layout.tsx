@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../Header';
-import { Stack, createStyles } from '@mantine/core';
+import { Flex, Stack, createStyles } from '@mantine/core';
 import { COLORS } from '../../constants/style';
 import { FAVORITE_PAGE, HOME_PAGE } from '../../constants/router';
 
@@ -17,7 +17,7 @@ const useStyles = createStyles(() => ({
 export default function Layout() {
   const { classes } = useStyles();
   return (
-    <Stack h="100%">
+    <Flex direction="column" h="100%">
       <Header
         links={[
           { label: 'Поиск вакансий', link: `${HOME_PAGE}` },
@@ -28,6 +28,6 @@ export default function Layout() {
       <main className={classes.main}>
         <Outlet />
       </main>
-    </Stack>
+    </Flex>
   );
 }

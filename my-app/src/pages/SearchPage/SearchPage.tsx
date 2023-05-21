@@ -6,15 +6,16 @@ import {
   Loader,
   Pagination,
   Stack,
+  Text,
 } from '@mantine/core';
 import FiltersForm from './ components/FiltersForm';
-import JobCard from './ components/JobCard';
 import SearchBar from './ components/SearchBar';
 import { getVacancies } from '../../services/getVacancies';
 import { IVacancy } from '../../types/vacancy';
 import { IDataFilterForm } from './ components/FiltersForm/FiltersForm';
 import { calculateTotalPages } from '../../utils/calculateTotalPages';
 import { useMediaQuery } from '@mantine/hooks';
+import VacanciesList from './ components/VacanciesList';
 
 export const SearchPage = () => {
   const largeScreen = useMediaQuery('(min-width: 30em)');
@@ -73,11 +74,11 @@ export const SearchPage = () => {
             <Center>
               <Loader />
             </Center>
+          ) : vacancies.length === 0 ? (
+            <Text>По вашему запросу результатов не найдено</Text>
           ) : (
             <>
-              {vacancies.map(vacancy => (
-                <JobCard key={vacancy.id} vacancy={vacancy} />
-              ))}
+              <VacanciesList vacancies={vacancies} />
               <Pagination
                 value={dataSearch.page}
                 onChange={handlePagination}
