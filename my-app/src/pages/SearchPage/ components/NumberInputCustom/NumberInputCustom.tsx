@@ -1,15 +1,10 @@
-import {
-  NumberInput,
-  NumberInputHandlers,
-  NumberInputProps,
-  Stack,
-} from '@mantine/core';
+import { NumberInput, NumberInputProps, Stack } from '@mantine/core';
 import { randomId } from '@mantine/hooks';
 import React from 'react';
-import { ReactComponent as IconChevronUp } from '../../../../../../assets/icons/iconChevronUp.svg';
-import { ReactComponent as IconsChevronDown } from '../../../../../../assets/icons/chevronDown.svg';
-import { useFiltersFormContext } from '../../../../../../context/formContext';
-import { IDataFilterForm } from '../../FiltersForm';
+import { ReactComponent as IconChevronUp } from '../../../../assets/icons/IconChevronUp.svg';
+import { ReactComponent as IconsChevronDown } from '../../../../assets/icons/chevronDown.svg';
+import { useFiltersFormContext } from '../../../../context/formContext';
+import { IDataFilterForm } from '../FiltersForm/FiltersForm';
 
 type Name = keyof IDataFilterForm;
 

@@ -7,7 +7,7 @@ import {
   useFiltersForm,
 } from '../../../../context/formContext.ts';
 import { useFetchDataCategories } from '../../../../hooks/useFetchCategories';
-import NumberInputCustom from './components/NumberInputCustom';
+import { NumberInputCustom } from '../NumberInputCustom/NumberInputCustom.tsx';
 
 interface IDataSelectIndustry {
   value: string;
@@ -44,7 +44,6 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
 
   const handleSubmit = (event: IDataFilterForm) => {
     console.log(event);
-
     onSearch(event);
   };
 

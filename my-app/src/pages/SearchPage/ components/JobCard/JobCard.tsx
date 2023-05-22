@@ -43,7 +43,7 @@ export const JobCard: React.FC<JobCardInterface> = ({ vacancy, onChange }) => {
 
   return (
     <Card
-      data-elem={`vacancy-_${vacancy.id}`}
+      data-elem={`vacancy-${vacancy.id}`}
       maw={773}
       w="100%"
       shadow="sm"
