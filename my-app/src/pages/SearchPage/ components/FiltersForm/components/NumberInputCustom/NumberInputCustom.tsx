@@ -1,10 +1,10 @@
-import React from 'react';
 import { NumberInput, NumberInputProps, Stack } from '@mantine/core';
-import { ReactComponent as IconChevronUp } from '../../../../../../assets/icons/iconShevronUp.svg';
-import { ReactComponent as IconsChevronDown } from '../../../../../../assets/icons/iconsChevronDown.svg';
-import { useFiltersFormContext } from '../../../../../../context/form-context';
-import { IDataFilterForm } from '../../FiltersForm';
 import { randomId } from '@mantine/hooks';
+import React from 'react';
+import { ReactComponent as IconChevronUp } from '../../../../../../assets/icons/iconChevronUp.svg';
+import { ReactComponent as IconsChevronDown } from '../../../../../../assets/icons/iconsChevronDown.svg';
+import { useFiltersFormContext } from '../../../../../../context/formСontext';
+import { IDataFilterForm } from '../../FiltersForm';
 
 type Name = keyof IDataFilterForm;
 
@@ -21,7 +21,7 @@ export const NumberInputCustom: React.FC<NumberInputCustomProps> = ({
 
   const form = useFiltersFormContext();
 
-  const value = form.values[name].length ? 1 : parseInt(form.values[name]);
+  const value = parseInt(form.values[name]);
 
   const handleIncrement = () => {
     setHasIncremented(true);

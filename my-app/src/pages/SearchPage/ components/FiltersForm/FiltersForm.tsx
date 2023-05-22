@@ -1,13 +1,13 @@
+import { Box, Button, Card, Flex, Select, Stack, Title } from '@mantine/core';
 import React from 'react';
-import { Card, Title, Stack, Button, Select, Flex, Box } from '@mantine/core';
-import { useFetchDataCategories } from '../../../../hooks/useFetchCategories';
-import { ReactComponent as IconX } from '../../../../assets/icons/crossIcon.svg';
 import { ReactComponent as IconChevronDown } from '../../../../assets/icons/IconChevronDown.svg';
-import NumberInputCustom from './components/NumberInputCustom';
+import { ReactComponent as IconX } from '../../../../assets/icons/crossIcon.svg';
 import {
   FiltersFormProvider,
   useFiltersForm,
-} from '../../../../context/form-context.ts';
+} from '../../../../context/formСontext.ts';
+import { useFetchDataCategories } from '../../../../hooks/useFetchCategories';
+import NumberInputCustom from './components/NumberInputCustom';
 
 interface IDataSelectIndustry {
   value: string;
@@ -37,8 +37,8 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
   const form = useFiltersForm({
     initialValues: {
       industry: '',
-      paymentFrom: '',
-      paymentTo: '',
+      paymentFrom: '0',
+      paymentTo: '0',
     },
   });
 
