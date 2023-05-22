@@ -52,7 +52,12 @@ export const JobCard: React.FC<JobCardInterface> = ({ vacancy, onChange }) => {
       <Stack spacing="sm">
         <Flex justify={'space-between'}>
           <Text size="xl" weight="600" lh="24px">
-            <Link to={`/job/${vacancy.id}`}>{vacancy.profession}</Link>
+            <Link
+              style={{ textDecoration: 'none', color: `${COLORS.BlueMain500}` }}
+              to={`/job/${vacancy.id}`}
+            >
+              {vacancy.profession}
+            </Link>
           </Text>
           <Box w={22} h={20}>
             <StarICon

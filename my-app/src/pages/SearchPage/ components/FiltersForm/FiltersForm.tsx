@@ -5,7 +5,7 @@ import { ReactComponent as IconX } from '../../../../assets/icons/crossIcon.svg'
 import {
   FiltersFormProvider,
   useFiltersForm,
-} from '../../../../context/formСontext.ts';
+} from '../../../../context/formContext.ts';
 import { useFetchDataCategories } from '../../../../hooks/useFetchCategories';
 import NumberInputCustom from './components/NumberInputCustom';
 
@@ -37,8 +37,8 @@ export const FiltersForm: React.FC<IFiltersFormProps> = ({ onSearch }) => {
   const form = useFiltersForm({
     initialValues: {
       industry: '',
-      paymentFrom: '0',
-      paymentTo: '0',
+      paymentFrom: '',
+      paymentTo: '',
     },
   });
 

@@ -65,7 +65,7 @@ export const SearchPage = () => {
   }, [dataSearch]);
 
   return (
-    <Container maw="1136px" w="100%" mx="auto" px={10}>
+    <Container pt={40} maw="1136px" w="100%" mx="auto" px={10} mb={10}>
       <Flex direction={largeScreen ? 'row' : 'column'} gap={28}>
         <FiltersForm onSearch={handleSearchForm} />
         <Stack align="center" spacing="md" style={{ flexGrow: 1 }}>

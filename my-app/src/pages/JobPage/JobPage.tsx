@@ -11,7 +11,7 @@ export const JobPage = () => {
   const descriptions = vacancy?.vacancyRichText;
 
   return (
-    <Container maw={793} mx={'auto'} w="100%" px={10}>
+    <Container pt={40} maw={793} mx={'auto'} w="100%" px={10}>
       {!isLoading && vacancy && descriptions ? (
         <Stack spacing="lg">
           <JobCard vacancy={vacancy} />

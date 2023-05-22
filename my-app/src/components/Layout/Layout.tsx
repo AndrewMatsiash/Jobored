@@ -9,7 +9,6 @@ const useStyles = createStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     flex: '1',
-    paddingTop: '40px',
     backgroundColor: `${COLORS.LightGray}`,
   },
 }));

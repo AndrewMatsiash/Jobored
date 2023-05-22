@@ -6,6 +6,7 @@ import {
   Paper,
   Transition,
   Flex,
+  NavLink,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { Link, useLocation } from 'react-router-dom';

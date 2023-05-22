@@ -33,7 +33,7 @@ export const FavoritesPage = () => {
   };
 
   return favorites.length ? (
-    <Container maw={773} w="100%">
+    <Container pt={40} maw={773} w="100%">
       <Stack align="center" mx="auto" spacing="md">
         {paginateArray.map((vacancy: IVacancy) => (
           <JobCard key={vacancy.id} vacancy={vacancy} onChange={onChange} />
@@ -48,7 +48,7 @@ export const FavoritesPage = () => {
       </Stack>
     </Container>
   ) : (
-    <Center style={{ flex: '1' }} miw={327} mx="auto">
+    <Center mb={10} style={{ flex: '1' }} miw={327} mx="auto">
       <Stack spacing={32} align="center">
         <Image src="./icons/notFoundFavoriteBg.svg" alt="notFoundFavorite" />
         <Text weight={700} align="center">
